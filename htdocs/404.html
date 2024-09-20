@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./flower.js"></script>
+    <title>404</title>
+</head>
+<style>
+    .title{
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        position: relative;       
+        margin-top:50px;
+        animation: float 2s;
+    }
+    .b{
+        display: flex;
+        justify-content: center;
+        animation: jianxian 2s;
+    }
+    .bj {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #e7e7e7 url('./icon/bj.jpg') center no-repeat fixed;
+  background-size: cover;
+  z-index: -2;
+  backdrop-filter: blur(5px);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+    @keyframes float {    
+  from { position: relative;       
+     margin-top:200px;        
+     opacity: 0;    
+     }    
+  to {  position: relative;        
+    margin-top: 50px;        
+    opacity: 1;    
+    }
+  }
+  @keyframes jianxian {    
+  from {      
+     opacity: 0;    
+     }    
+  to {      
+    opacity: 1;    
+    }
+  }
+</style>
+<body>
+    <div class="overlay"></div>
+    <div class="bj"></div>
+    <p class="title">404</p>
+    <p class="b">你所请求的页面不存在</p>
+</body>
+</html>

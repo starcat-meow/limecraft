@@ -1,0 +1,246 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.huadong{
+  overflow: scroll;
+  height: 200vh;
+}
+.beiji{
+  position: fixed;
+  top: 3px;
+}
+.bj {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  background: #e7e7e7 url('./icon/bj.jpg') center no-repeat ;
+  background-size: cover;
+  z-index: -2;
+  backdrop-filter: blur(5px);
+}
+
+.baise {
+  overflow-y:auto;
+  position: absolute;
+  top: 110%;
+  left: 5%;
+  height: 30%;
+  width: 90%;
+  background: white center no-repeat fixed;
+  background-size: cover;
+  z-index: 5;
+  
+  border-radius: 10px 10px 10px 10px;
+}
+
+.title {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+.download {
+  background-color: #0015FF;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 4px;
+  transition: box-shadow .5s ease, transform .2s ease;
+  will-change: transform;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  color: white;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  width: 180px;
+  height: 60px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  border-radius: 60px;
+  margin: 0 auto;
+  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+a {
+  text-decoration: none;
+}
+      
+
+.navbar-toggle-btn span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 35px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 88;
+  }
+  
+  .navbar a {
+    padding: 8px;
+  }
+
+  .navbar.show {
+    display: flex;
+  }
+
+  .navbar-toggle-btn {
+    display: block;
+  }
+  .title {
+    color: white;
+    position: relative; 
+    margin-top: 50px;
+    height: 250px;
+    font-size: 65px;
+    font-weight: bolder;
+    animation: float 2s;
+  }
+  .download {
+    background-color: #0015FF;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-radius: 4px;
+    transition: box-shadow .5s ease, transform .2s ease;
+    will-change: transform;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    color: white;
+    cursor: pointer;
+    position: relative;        
+    padding: 18px;
+    width: 180px;
+    height: 60px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 60px;
+    margin: 0 auto;
+    animation: jianxian 2s;
+    
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .navbar {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 88;
+  }
+
+  .navbar a {
+    padding: 8px;
+  }
+
+  .navbar-toggle-btn {
+    display: none;
+  }
+
+  .title {
+    color: white;
+    position: relative;        
+    margin-top: 50px; 
+    height: 460px;
+    font-size: 100px;
+    font-weight: bolder;
+    animation: float 2s;
+  }
+
+  .download {
+    background-color: #0015FF;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-radius: 4px;
+    transition: box-shadow .5s ease, transform .2s ease;
+    will-change: transform;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    color: white;
+    cursor: pointer;
+    position: relative;        
+    padding: 18px;
+    width: 200px;
+    height: 80px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+    border-radius: 60px;
+    margin: 0 auto;
+    animation: jianxian 2s;
+  }
+}
+
+.dao {
+  width: 100%;
+  height: 50px;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  padding: 18px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+@keyframes float {    
+  from { position: relative;       
+     margin-top:200px;        
+     opacity: 0;    
+     }    
+  to {  position: relative;        
+    margin-top: 50px;        
+    opacity: 1;    
+    }
+  }
+  @keyframes sjbanben {    
+    from { position: relative;       
+       margin-top:200px;        
+       opacity: 0;    
+       }    
+    to {  position: relative;        
+      margin-top: 50px;        
+      opacity: 1;    
+      }
+    }
+  @keyframes jianxian {    
+    from { position: relative;              
+       opacity: 0;    
+       }    
+    to {  position: relative;            
+      opacity: 1;    
+      }
+    }
