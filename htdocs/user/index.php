@@ -2,7 +2,6 @@
 <?php
 session_start(); // 移动到文件顶部  
 $pdo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
-
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  
         if(!empty($_GET['id']))

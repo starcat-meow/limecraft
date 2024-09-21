@@ -4,7 +4,7 @@ body {
 
 .huadong{
   overflow: scroll;
-  height: 200vh;
+  height: 100vh;
 }
 .beiji{
   position: fixed;
@@ -22,18 +22,81 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.baise {
-  overflow-y:auto;
+.black-board{
   position: absolute;
-  top: 110%;
-  left: 5%;
-  height: 30%;
-  width: 90%;
-  background: white center no-repeat fixed;
-  background-size: cover;
-  z-index: 5;
+  background: #f5f5f5;
+  top:0;
+  left:0;
+  height:400vh;
+  width:100%;
+  z-index: -5;
+}
   
-  border-radius: 10px 10px 10px 10px;
+.post {  
+    background: #fff;  
+    border-radius: 8px;  
+    margin: 20px 0;  
+    padding: 20px;  
+    overflow:hidden;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.2);
+   
+}  
+  
+/* 头像样式 */  
+.post-avatar {  
+    width: 50px;  
+    height: 50px;  
+    border-radius: 50%;  
+    float: left;  
+    margin-right: 10px;  
+}  
+  
+/* 帖子元数据样式 */  
+.post-meta {  
+    float: left;  
+    width: calc(100% - 60px);  
+}  
+  
+.post-name {  
+    margin: 0;  
+}  
+  
+.post-date, .post-id {  
+    font-size: 0.85em;  
+    color: #666;  
+}  
+  
+/* 帖子内容样式 */  
+.post-content {  
+    clear: both;  
+    margin-top: 10px;  
+}  
+  
+.post-title {  
+    margin: 0 0 10px 0;  
+    font-size: 1.25em;  
+}  
+  
+.post-text {  
+    line-height: 1.6;  
+    color: #333;
+    overflow:hidden;
+     display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;	
+}
+
+.avatar{
+  margin-top: 0%;
+  left:25%;
+  width: 60px;
+  height: 60px;
+  border-radius: 200px;
+  user-select: none;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+      /* 增加磨砂质感 */
+  backdrop-filter: blur(10px);
 }
 
 .title {
@@ -67,7 +130,6 @@ body {
   font-size: 18px;
   border-radius: 60px;
   margin: 0 auto;
-  
 }
 
 .overlay {
