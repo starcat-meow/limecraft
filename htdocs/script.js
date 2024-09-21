@@ -25,5 +25,9 @@ function substrLength(elementId,length){  //elementId：元素id，length：需�
         text.innerText=result;
     }
 substrLength('post-text','30');
-
+function ToChangePage()
+{
+  var form=document.getElementById("form");
+  form.submit();
+}
  

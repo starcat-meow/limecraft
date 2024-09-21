@@ -22,12 +22,18 @@ body {
   backdrop-filter: blur(5px);
 }
 
+.page_change{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .black-board{
   position: absolute;
   background: #f5f5f5;
   top:0;
   left:0;
-  height:400vh;
+  height:420vh;
   width:100%;
   z-index: -5;
 }

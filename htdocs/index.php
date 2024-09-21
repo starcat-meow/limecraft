@@ -48,8 +48,8 @@
     </a>
 </div>
 <?php
-for($i;$i<=10;$i++)
-echo "         <div class='post-box'>
+for($i=0;$i<8;$i++)
+echo "<div class='post-box'>
         <div class='post'>  
     <div class='post-header'>  
         <img src='./icon/logo.png' alt='用户头像' class='post-avatar'>  
@@ -65,6 +65,26 @@ echo "         <div class='post-box'>
 
     </div>  ";
 ?>
+<div class="page_change">
+<a>
+  <button>上一页</button>
+</a>
+<form enctype='multipart/form-data' method='get' action="" id='form'>
+  <select name='page' id='page' onchange='ToChangePage()'>
+<?php
+for($i=1;$i<=8;$i++)
+{
+$selected=( $_GET['page'] == $i ? 'selected' : '');
+//判断get页数并让下拉框选中当前页数～
+echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
+}
+?>
+  </select>
+</form>
+<a>
+  <button>下一页</button>
+</a>
+</div>
   </div>
   
 </body> 
