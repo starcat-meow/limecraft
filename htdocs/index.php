@@ -52,10 +52,10 @@ for($i=0;$i<8;$i++)
 echo "<div class='post-box'>
         <div class='post'>  
     <div class='post-header'>  
-        <img src='./icon/logo.png' alt='用户头像' class='post-avatar'>  
+        <img src='https://limecraft.top/user/improve/upload/2024-09-17_21-33-30.jpg' alt='用户头像' class='post-avatar'>  
         <div class='post-meta'>  
             <h3 class='post-name'>用户名</h3>  
-            <p class='post-date'>发布日期: 2023-04-01</p>
+            <p class='post-date'>发布日期: 2024-09-21</p>
         </div>  
             <div class='post-content'>  
         <h2 class='post-title'>帖子标题</h2>  

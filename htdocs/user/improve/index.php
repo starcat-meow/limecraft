@@ -175,7 +175,7 @@ else
 	 <P class="tip" style="color: red;font-size:10px; margin-top:15px;margin-bottom:15px;">
   <?php 
           session_start();
-      if(empty($_POST['gid']) || empty($_POST['name']) || empty($_POST['photo']))
+      if(empty($_POST['gid']) || empty($_POST['name']) || empty($_FILES))
       echo '请完整填写内容';
       elseif(!empty($GLOBALS['if']) && $GLOBALS['if']==4)
       {
