@@ -48,6 +48,13 @@
     </a>
 </div>
 <?php
+include './header.php';
+$pdo=PDOStart();
+$stmt = $pdo->prepare("SELECT id,title,text,date,post_username,post_useravatar FROM article ORDER BY id BETWEEN ? AND ?");  
+$stmt->bindParam(1, $begin, PDO::PARAM_STR);  
+$stmt->bindParam(2, $end, PDO::PARAM_STR);  
+$stmt->execute();  
+
 for($i=0;$i<8;$i++)
 echo "<div class='post-box'>
         <div class='post'>  
@@ -72,7 +79,14 @@ echo "<div class='post-box'>
 <form enctype='multipart/form-data' method='get' action="" id='form'>
   <select name='page' id='page' onchange='ToChangePage()'>
 <?php
-for($i=1;$i<=8;$i++)
+$pdo=PDOStart();
+$stmt = $pdo->prepare("SELECT id FROM article"); 
+$stmt->execute(); 
+$arr = $stmt->fetchAll(); 
+$shu=$arr[0];
+$num_article=count($shu)-1;
+$num_for=$num_article/8+1;//计算文章页数
+for($i=1;$i<=$num_for;$i++)
 {
 $selected=( $_GET['page'] == $i ? 'selected' : '');
 //判断get页数并让下拉框选中当前页数～
