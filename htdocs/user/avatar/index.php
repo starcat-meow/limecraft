@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
 session_start(); // 移动到文件顶部  
-$pdo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
+include '../../header.php';
+UserCookieTest();
+$pdo=PDOStart();
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  
         $stmt = $pdo->prepare("SELECT name,gid FROM user WHERE cookie = ?");  

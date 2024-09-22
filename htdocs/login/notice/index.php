@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 session_start();
-
+include '../../header.php';
+UserCookieTest();
 ?>
 <html>
 

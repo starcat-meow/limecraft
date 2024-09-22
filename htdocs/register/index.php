@@ -1,37 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start(); 
-$pdo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
-if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {  
-    $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];  
-    $ip = explode(',', $ip)[0];  
-    $ip = trim($ip);  
-} else {  
-    $ip = $_SERVER["REMOTE_ADDR"];  
-}  
-function GetRandStr($length){
- $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
- $len = strlen($str)-1;
- $randstr = '';
- for ($i=0;$i<$length;$i++) {
-  $num=mt_rand(0,$len);
-  $randstr .= $str[$num];
- }
- return $randstr;
-}
-function GetUid()
-{
-  $stmtt=$GLOBALS['pdo']->prepare("select * from `public` where key_ = 'num_uid';");
-  $stmtt->execute();
-  $arrt=$stmtt->fetchALL();
-  $shut=$arrt[0];
-  $num_uid=$shut[1];
-  $num_uid++;
-  $stmt=$GLOBALS['pdo']->prepare("UPDATE public SET value = ".$num_uid." where key_ = 'num_uid';");
-  $stmt->execute();
-  return $num_uid;
-}
-$cookie=GetRandStr(50);
+include '../header.php';
+$pdo=PDOStart();
+UserCookieTest();
+$ip=GetIp();
+$cookie=GetRandStr(100);
 $now = date('Y-m-d H:i:s',time());
 $stmt=$GLOBALS['pdo']->prepare("select * from user where register_ip = '".$ip."';");
 $stmt->execute();
@@ -45,10 +19,10 @@ if(empty($arr1) && empty($arr2))
   unset($_SESSION['ifregister']);
   if(!empty($_POST['password']) && !empty($_POST['againpassword'])&&$_POST['password']==$_POST['againpassword'] && !empty($_POST['email']))
   {
-    $thenum_uid=GetUid();
+    $thenum_uid=GetUidNum();
     $email = $_POST['email'];  
 $password = $_POST['password'];  
-$name = 'user' . $thenum_uid; // 假设 $thenum_uid 已经定义  
+$name = 'user' . $thenum_uid; 
 $gid=0;
   
 // 准备 SQL 语句，使用命名参数  
@@ -59,7 +33,7 @@ $stmt->bindParam(':email', $email);
 $stmt->bindParam(':name', $name);  
 $password = $_POST['password'];  
 $hashedPassword = md5($password);  
-$stmt->bindParam(':password', $hashedPassword); // 需要先散列密码  
+$stmt->bindParam(':password', $hashedPassword);  
 $stmt->bindParam(':last_date', $now);  
 $stmt->bindParam(':register_date', $now);  
 $stmt->bindParam(':id', $thenum_uid);  
@@ -67,8 +41,6 @@ $stmt->bindParam(':gid', $gid);
 $stmt->bindParam(':register_ip', $ip);  
 $stmt->bindParam(':cookie', $cookie);  
 $stmt->execute();  
-    
-    session_start();
     $_SESSION['username']="user".$thenum_uid;
     header('Location:./notice');
     exit;

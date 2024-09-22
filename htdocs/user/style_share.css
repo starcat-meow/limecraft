@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+.a{
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    background: none;
+    text-decoration: none;
+}
+
 .img{
   margin-top: 15%;
   left:25%;
@@ -16,6 +24,7 @@
       /* 增加磨砂质感 */
       backdrop-filter: blur(10px);
   animation: float 2s;
+  
 }
 .username
 {

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <?php
+include '../header.php';
 session_start(); // 移动到文件顶部  
-$pdo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
+$pdo=PDOStart();
+UserCookieTest();
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  
-        if(!empty($_GET['id']))
-        {
+    if(!empty($_GET['id']))
+    {
         $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE id = ?");  
        $stmt->bindParam(1, $_GET['id'], PDO::PARAM_STR);  
-        }
-        else
-        {
-          $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");  
-          $stmt->bindParam(1, $cookie, PDO::PARAM_STR);  
-        }
-        $stmt->execute();  
-        $arr = $stmt->fetchAll();  
+    }
+    else
+    {
+       $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");  
+       $stmt->bindParam(1, $cookie, PDO::PARAM_STR);  
+    }
+       $stmt->execute();  
+       $arr = $stmt->fetchAll();  
         $shu = $arr[0]; 
         if($shu['img']!='')
            $GLOBALS["img"]=$shu['img'];

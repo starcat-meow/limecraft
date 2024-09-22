@@ -58,7 +58,7 @@ echo "<div class='post-box'>
             <p class='post-date'>发布日期: 2024-09-21</p>
         </div>  
             <div class='post-content'>  
-        <h2 class='post-title'>帖子标题</h2>  
+        <h2 class='post-title'>文章标题</h2>  
         <p class='post-text' id='post-text'>这里是帖子的正文内容，这里是帖子的正文内容这里是帖子的正文内容可以很长很长这里是帖子的正文内容，可以很长很长这里是帖子的正文内容，这里是帖子的正文内容这里是帖子的正文内容可以很长很长这里是帖子的正文内容，可以很长很长</p>  
     </div>  
     </div>

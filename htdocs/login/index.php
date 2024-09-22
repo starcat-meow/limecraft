@@ -2,8 +2,9 @@
 <?php
 session_start(); // 移动到文件顶部  
   $shu=array();
-$pdo = new PDO('mysql:host=localhost;dbname=admin', 'admin', 'flyusb123', [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"]);  
-  
+include '../header.php';
+UserCookieTest();
+$pdo=PDOStart();
 // 预处理和绑定参数  
 $email = isset($_POST['email']) ? $_POST['email'] : '';  
 $password = isset($_POST['password']) ? $_POST['password'] : '';
@@ -17,7 +18,7 @@ $arr = $stmt->fetchAll(PDO::FETCH_ASSOC); // 使用 PDO::FETCH_ASSOC 以确保�
 if (!empty($arr)) {  
     $shu = $arr[0];  
     if ($password != null && $shu['password'] == md5($password)) {  
-        $expire = time() + 60 * 60 * 24 * 10;  
+        $expire = time() + 60 * 60 * 24 * 90;  
         setcookie("usercookie", $shu['cookie'], $expire,'/');  
         $_SESSION['username'] = $shu['name'];  
         header('Location: ./notice');  
@@ -85,12 +86,6 @@ if(isset($_POST['password']) && ($shu==array() || $shu['password'] != md5($_POST
     <a href=".">
       <button class="dao">登录</button>
     </a>
-    <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='./about.html'>
-      <button class='dao'>用户中心</button>
-    </a>"
-    ?>
   </nav>
 
   <div class="bj"></div>
