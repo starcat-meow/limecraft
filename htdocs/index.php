@@ -50,27 +50,43 @@
 <?php
 include './header.php';
 $pdo=PDOStart();
+if(empty($_GET['page']))
+    $_GET['page']=1;
+$begin=8*$_GET['page']+1;
+$end=$_GET['page']+8;
+$stmt = $pdo->prepare("SELECT id FROM article"); 
+$stmt->execute(); 
+$arr = $stmt->fetchAll(); 
+$shu=$arr[0];
+$num_article=count($shu)-1;
 $stmt = $pdo->prepare("SELECT id,title,text,date,post_username,post_useravatar FROM article ORDER BY id BETWEEN ? AND ?");  
 $stmt->bindParam(1, $begin, PDO::PARAM_STR);  
 $stmt->bindParam(2, $end, PDO::PARAM_STR);  
 $stmt->execute();  
-
+$arr=$stmt->fetchAll();
 for($i=0;$i<8;$i++)
+{
+if($begin*$_GET['page']+$i>$end)
+{
+  break;
+}
+$shu=$arr[$i];
 echo "<div class='post-box'>
         <div class='post'>  
     <div class='post-header'>  
-        <img src='https://limecraft.top/user/improve/upload/2024-09-17_21-33-30.jpg' alt='用户头像' class='post-avatar'>  
+        <img src='".$shu['post-avatar']."' alt='用户头像' class='post-avatar'>  
         <div class='post-meta'>  
-            <h3 class='post-name'>用户名</h3>  
-            <p class='post-date'>发布日期: 2024-09-21</p>
+            <h3 class='post-name'>".$shu['post_username']."</h3>  
+            <p class='post-date'>发布日期:".$shu['date']."</p>
         </div>  
             <div class='post-content'>  
-        <h2 class='post-title'>文章标题</h2>  
-        <p class='post-text' id='post-text'>这里是帖子的正文内容，这里是帖子的正文内容这里是帖子的正文内容可以很长很长这里是帖子的正文内容，可以很长很长这里是帖子的正文内容，这里是帖子的正文内容这里是帖子的正文内容可以很长很长这里是帖子的正文内容，可以很长很长</p>  
+        <h2 class='post-title'>".$shu['title']."</h2>  
+        <p class='post-text' id='post-text'>".$shu['text']."</p>  
     </div>  
     </div>
 
     </div>  ";
+}
 ?>
 <div class="page_change">
 <a>
