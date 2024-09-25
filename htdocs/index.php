@@ -14,9 +14,11 @@
 
 
 <body>
-  <div class="black-board"></div>
+  <div class="menu-box" id="MenuBox"></div>
+  <div class="black-layer"></div>
+  <div class="menuclose" onclick="MenuOn();" id="menuClose"></div>
   <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="toggleNavbar()">
+    <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
       <span></span>
       <span></span>
       <span></span>
@@ -26,20 +28,6 @@
     <div class="overlay"></div>
     <div class="bj"></div>
     <div class="baise"></div>
-    <nav class="navbar">
-      <a href=".">
-        <button class="dao">首页</button>
-      </a>
-      <a href="./login">
-        <button class="dao">登录</button>
-      </a>
-    <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='./user'>
-      <button class='dao'>用户中心</button>
-    </a>"
-    ?>
-    </nav>
     <div class="title">
       <p class="title">LimeCraft</p>
     </div>
@@ -47,6 +35,7 @@
       <button class="download">More</button>
     </a>
 </div>
+  <div class="black-board">
 <?php
 include './header.php';
 $pdo = PDOStart();  
@@ -67,8 +56,7 @@ $arr = $stmt->fetchAll();
 // $stmt->execute();  
 // $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];  
 // $totalPages = ceil($total / $perPage);  
-  
-print_r($arr);
+
 for($i=0;$i<8;$i++)
 {
 $shu=$arr[$i];
@@ -118,7 +106,10 @@ echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
 </a>
 </div>
   </div>
-  
+<div class="introduce">
+  <br>
+  <p>◎Porwer by LimeCraft Blog</p>
+</div>
 </body> 
 
 </html>

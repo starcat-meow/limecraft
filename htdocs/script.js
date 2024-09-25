@@ -1,6 +1,31 @@
-function toggleNavbar() {
-  var navbar = document.querySelector('.navbar');
-  navbar.classList.toggle('show');
+let menu=0;
+let ani=1;
+function MenuOn(){
+  var button=document.getElementById('MenuBox');
+  var close=document.getElementById('menuClose');
+  if(ani==1)
+  {
+  if(menu==0)
+  {
+    button.classList.remove('jianback');
+  button.classList.add('jian');
+  close.classList.remove('layerback');
+  close.classList.add('layer');
+  menu = 1;
+  }
+  else
+  {
+    button.classList.remove('jian');
+    button.classList.add('jianback');
+    close.classList.remove('layer');
+    close.classList.add('layerback');
+    menu = 0;
+  }
+  }
+  ani=0;
+  button.addEventListener('animationend', function() {  
+    ani=1;
+  }, { once: true });
 }
 function resetVhAndPx() {
   let vh = window.innerHeight * 0.01
