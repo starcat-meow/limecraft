@@ -14,7 +14,20 @@
 
 
 <body>
-  <div class="menu-box" id="MenuBox"></div>
+  <div class="menu-box" id="MenuBox">
+    <a href="./">
+    <button class="menu-btn">首页</button>
+    </a>
+    <a href="../login">
+    <button class="menu-btn">登录</button>
+    </a>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../user'>
+      <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+  </div>
   <div class="black-layer"></div>
   <div class="menuclose" id="menuClose"></div>
   <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>

@@ -9,6 +9,23 @@ body{
   height:35px;
   background-color: white;
 }
+.menu-btn{
+  width:100%;
+  height:40px;
+  margin:auto 0;
+  text-align:center;
+  justify-content: space-around;
+    align-items: center;
+  border: 1px solid #e7e7e777;
+  backdrop-filter: blur(5px);
+  background-color: white;
+  transition:all 0.5s ease;
+  border-radius: 8px;  
+}
+.menu-btn:hover{
+  background-color: blue;
+  color:white;
+}
 .menuclose{
   position: fixed;
   top: 0;

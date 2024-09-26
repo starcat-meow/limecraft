@@ -1,9 +1,13 @@
 let menu=0;
 let test=0;
+let ani=0;
 function MenuOn(){
+  if(ani==0)
+  {
   var button=document.getElementById('MenuBox');
   var lose=document.getElementById('menulose');
 var close=document.getElementById('menuClose');
+  close.removeEventListener('transitionend', closeTransitionEndHandler);  
   if(menu==0 && test==0)
   {
     close.style.top='0%';
@@ -11,6 +15,7 @@ var close=document.getElementById('menuClose');
     menu=1;
     test=1;
   }
+  ani=1;
   button.classList.toggle("active");
   close.classList.toggle("active");
   lose.classList.toggle("active");
@@ -33,7 +38,9 @@ function closeTransitionEndHandler(event) {
         document.body.style.overflow='visible';
       }
       close.removeEventListener('transitionend', closeTransitionEndHandler);  
+      ani=0;
     }  
+}
 }
 }
 function resetVhAndPx() {
