@@ -1,31 +1,40 @@
 let menu=0;
-let ani=1;
+let test=0;
 function MenuOn(){
   var button=document.getElementById('MenuBox');
-  var close=document.getElementById('menuClose');
-  if(ani==1)
+  var lose=document.getElementById('menulose');
+var close=document.getElementById('menuClose');
+  if(menu==0 && test==0)
   {
-  if(menu==0)
-  {
-    button.classList.remove('jianback');
-  button.classList.add('jian');
-  close.classList.remove('layerback');
-  close.classList.add('layer');
-  menu = 1;
+    close.style.top='0%';
+    document.body.style.overflow='hidden';
+    menu=1;
+    test=1;
   }
-  else
-  {
-    button.classList.remove('jian');
-    button.classList.add('jianback');
-    close.classList.remove('layer');
-    close.classList.add('layerback');
-    menu = 0;
-  }
-  }
-  ani=0;
-  button.addEventListener('animationend', function() {  
-    ani=1;
-  }, { once: true });
+  button.classList.toggle("active");
+  close.classList.toggle("active");
+  lose.classList.toggle("active");
+  close.addEventListener('transitionend', closeTransitionEndHandler);  
+  // 定义 transitionend 事件的处理函数  
+function closeTransitionEndHandler(event) {  
+    // 检查是否是预期的过渡或动画  
+    if (event.propertyName === 'opacity' || event.propertyName === 'transform') {  
+      if(menu==1 && test==0)
+       {
+        menu=0;
+      }
+      else
+      {
+        test=0;
+      }
+      if(menu==0 && test==0)
+      {
+        close.style.top='100%';
+        document.body.style.overflow='visible';
+      }
+      close.removeEventListener('transitionend', closeTransitionEndHandler);  
+    }  
+}
 }
 function resetVhAndPx() {
   let vh = window.innerHeight * 0.01

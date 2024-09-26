@@ -16,7 +16,9 @@
 <body>
   <div class="menu-box" id="MenuBox"></div>
   <div class="black-layer"></div>
-  <div class="menuclose" onclick="MenuOn();" id="menuClose"></div>
+  <div class="menuclose" id="menuClose"></div>
+  <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+  <div class="btn" onclick="MenuOn();"></div>
   <div class="beiji">
     <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
       <span></span>
@@ -108,7 +110,7 @@ echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
   </div>
 <div class="introduce">
   <br>
-  <p>◎Porwer by LimeCraft Blog</p>
+  <p>◎Porwer by LimeCraft</p>
 </div>
 </body> 
 
