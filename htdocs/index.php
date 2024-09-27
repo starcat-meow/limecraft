@@ -43,8 +43,14 @@ if (!empty($_COOKIE['usercookie'])) {
     </a>
     <?php
     if(!empty($_COOKIE['usercookie']))
-    echo "<a href='../user'>
+    echo "<a href='./user'>
       <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./post'>
+      <button class='menu-btn'>发布(alpha)</button>
     </a>"
     ?>
   </div>
