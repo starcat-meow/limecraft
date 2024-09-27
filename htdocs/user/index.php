@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include '../header.php';
+include_once '../header.php';
 session_start(); // 移动到文件顶部  
 $pdo=PDOStart();
 UserCookieTest();
@@ -71,27 +71,34 @@ if (!empty($_COOKIE['usercookie'])) {
 </style>
 
 <body>
+    <div class="menu-box" id="MenuBox">
+    <a href="../">
+    <button class="menu-btn">首页</button>
+    </a>
+    <a href="../login">
+    <button class="menu-btn">登录</button>
+    </a>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../user'>
+      <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+  </div>
+  <button class="editor">编辑</button>
+  <div class="black-layer"></div>
+  <div class="user-click" onmousemove="UserOn()"></div>
+  <div class="menuclose" id="menuClose"></div>
+  <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+  <div class="btn" onclick="MenuOn();"></div>
   <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="toggleNavbar()">
+    <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </div>
-  <nav class="navbar">
-    <a href="..">
-      <button class="dao">首页</button>
-    </a>
-    <a href="../login">
-      <button class="dao">登录</button>
-    </a>
-    <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='.'>
-      <button class='dao'>用户中心</button>
-    </a>"
-    ?>
-  </nav>
+
   <div class="img-box">
     <a href="./avatar">
     <img src="<?php echo $GLOBALS["img"]; ?>" class="img" draggable="flase">
@@ -99,10 +106,8 @@ if (!empty($_COOKIE['usercookie'])) {
     </a>
     <p class="username"><?php echo $GLOBALS["name"]; ?></p>
         <p class="uid">
-          <?php $text="(UID:".$GLOBALS["gid"].")"; echo $text; ?>
+          <?php $text="UID:".$GLOBALS["gid"].""; echo $text; ?>
           </p>
   </div>
-  <div class="bj"></div>
-  <div class="overlay"></div>
 </body>
 </html>

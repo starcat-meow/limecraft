@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start(); 
-include '../header.php';
+include_once '../header.php';
 $pdo=PDOStart();
 UserCookieTest();
 $ip=GetIp();

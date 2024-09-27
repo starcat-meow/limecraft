@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start(); // 移动到文件顶部  
-include '../../header.php';
+include_once '../../header.php';
 $pdo=PDOStart();
 UserCookieTest();
 if (!empty($_COOKIE['usercookie'])) {  

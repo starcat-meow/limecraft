@@ -4,8 +4,8 @@
 */
 function PDOStart()
 {
-  $pdo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
-  return $pdo;
+  $pdoo=new PDO('mysql:host=localhost;dbname=admin','admin','flyusb123',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
+  return $pdoo;
 }
 //开启数据库
 function GetRandStr($length){

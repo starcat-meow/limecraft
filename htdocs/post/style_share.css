@@ -1,9 +1,10 @@
 * {
-  /* 去除浏览器默认内外边距 */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+
 .user-click{
   position:fixed;
   top:0px;
@@ -101,94 +102,50 @@
 .menucloseclick.active{
   top: 0;
 }
-.a{
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
-    outline:none;
-    background: none;
-    text-decoration: none;
+.navbar-toggle-btn span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  background-color: black;
+  margin: 5px 0;
+}
+body{
+  display:flex;
+  overflow-x: hidden;
 }
 
-.img{
-  position: fixed;
-  margin-top: 40px;
-  left:20px;
-  width: 80px;
-  border-radius: 200px;
-  user-select: none;
+.fileuse{
+  top: 50px;
+  margin-left: 10%;
+  height: 80px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.3);
+        /* 增加磨砂质感 */
+  backdrop-filter: blur(10px);
+  background-size: cover;
+  z-index: 0;
+  border-radius: 10px 10px 10px 10px;
   border: 1px solid #fff;
-      background-color: rgba(255, 255, 255, 0.3);
-      /* 增加磨砂质感 */
-      backdrop-filter: blur(10px);
-  box-shadow:0px 1px 4px 4px rgba(0, 0, 0, 0.2);
 }
-.username
-{
-  position: fixed;
-  top:55px;
-  left:120px;
-  text-align: center;
-    color: black;
-    /* 禁止选中 */
-    user-select: none;
-    letter-spacing: 2px;
-    font-size: 20px;
+.baise {
+  overflow-y: auto;
+  position: absolute;
+  top: 50px;
+  left: 5%;
+  height: 400px;
+  width: 90%;
+  background: linear-gradient(135deg,rgba(247, 209, 215,0.8), rgba(191, 227, 241,0.8));
+  background-size: cover;
+  z-index: 0;
+  backdrop-filter: blur(5px);
+  border-radius: 10px 10px 10px 10px;
 }
-.editor
-{
-  position: fixed;
-  top:65px;
-  left:260px;
-  width:80px;
-  height:40px;
-  text-align: center;
-    background-color: white;
-    /* 禁止选中 */
-    user-select: none;
-    letter-spacing: 2px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: 1px solid #e7e7e7c8;
-      /* 增加磨砂质感 */
-      backdrop-filter: blur(10px);
-      transition:all 0.4s ease;
-}
-.editor:hover{
-  background-color: #f2f1f16b;
-}
-.uid
-{
-  position: fixed;
-  top:90px;
-  left:120px;
-  text-align: center;
-    color: rgba(83,83,83,0.839);
-    /* 禁止选中 */
-    user-select: none;
-    letter-spacing: 2px;
-    font-size: 12px;
 
-}
 .beiji {
   position: fixed;
   top: 3px;
   left:8px;
   z-index: 5;
-}
-
-.navbar-toggle-btn span {
-  display: block;
-  height: 3px;
-  width: 25px;
-  bottom:0;
-  background-color: black;
-  margin: 5px 0;
-}
-
-
-body{
-  display:flex;
-  overflow-x: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -218,23 +175,49 @@ body{
     display: none;
   }
     .title {
-      margin-top: 5%;
-      text-align: center;
-      color: white;
+      position:fixed;
+      top: 50px;
+      left:10%;
+      width: 80%;
+      height: 40px;
+      color: black;
       /* 禁止选中 */
       user-select: none;
-      letter-spacing: 5px;
-      text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+      letter-spacing: 2px;
+      text-indent: 10px;
+      border: 1px solid rgba(120,120,120,0.5);
+      border-radius: 8px;
+      border-radius: 120px;
+      /* 增加磨砂质感 */
+      outline:none;
     }
+      .password {
+        margin-top: 5%;
+        width: 80%;
+        height: 40px;
+        color: black;
+        /* 禁止选中 */
+        user-select: none;
+        letter-spacing: 5px;
+    
+        margin-bottom: 20px;
+        text-indent: 10px;
+        border: 1px solid #fff;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 120px;
+        /* 增加磨砂质感 */
+        backdrop-filter: blur(10px);
+        outline:none;
+      }
       .login{
         margin-top:2%;
-        margin-right:40%;
+        margin-left:0%;
         background-color: #0015FF;
     background: linear-gradient(135deg, #5279FF, #25C4EA);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     color: white;
-    width: 40%;
+    width: 80%;
     height: 40px;
     border: none;
     text-align: center;
@@ -279,28 +262,6 @@ body{
     letter-spacing: 5px;
     text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
   }
-  .download {
-    background-color: #0015FF;
-    background: linear-gradient(135deg, #5175EF, #8661B4);
-    border-radius: 4px;
-    transition: box-shadow .5s ease, transform .2s ease;
-    will-change: transform;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-    color: white;
-    cursor: pointer;
-    position: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 18px;
-    width: 300px;
-    height: 100px;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 25px;
-    border-radius: 60px;
-    margin: 0 auto;
-  }
 
 }
 .dao {
@@ -322,7 +283,7 @@ body{
   left: 0;
   height: 100vh;
   width: 100%;
-  background: #e7e7e7 url('../icon/bj.jpg') center no-repeat;
+  background: #e7e7e7 url('../../icon/bj.jpg') center no-repeat;
   background-size: cover;
   z-index: -2;
   backdrop-filter: blur(5px);
@@ -336,23 +297,3 @@ body{
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
 }
-@keyframes float {    
-  from {      
-     margin-top:50%;        
-     opacity: 0;    
-     }    
-  to {    
-    margin-top: 15%;        
-    opacity: 1;    
-    }
-  }
-  @keyframes appear {    
-  from {      
-     
-     opacity: 0;    
-     }    
-  to {    
-    
-    opacity: 1;    
-    }
-  }

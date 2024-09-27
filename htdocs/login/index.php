@@ -2,7 +2,7 @@
 <?php
 session_start(); // 移动到文件顶部  
   $shu=array();
-include '../header.php';
+include_once '../header.php';
 UserCookieTest();
 $pdo=PDOStart();
 // 预处理和绑定参数  

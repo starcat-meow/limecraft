@@ -1,7 +1,4 @@
-function toggleNavbar() {
-  var navbar = document.querySelector('.navbar');
-  navbar.classList.toggle('show');
-}
+
 let menu=0;
 let test=0;
 let ani=0;

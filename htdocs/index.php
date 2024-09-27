@@ -1,5 +1,25 @@
 <!DOCTYPE html>
-
+<?php
+include_once './header.php';
+$pdo=PDOStart();
+UserCookieTest();
+if (!empty($_COOKIE['usercookie'])) {  
+        $cookie = $_COOKIE['usercookie'];  
+       $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");  
+       $stmt->bindParam(1, $cookie, PDO::PARAM_STR);  
+       $stmt->execute();  
+       $arr = $stmt->fetchAll();  
+        $shu = $arr[0]; 
+        if($shu['img']!='')
+           $GLOBALS["img"]=$shu['img'];
+        else
+          $GLOBALS["img"]='../icon/logo.png';
+        if (empty($arr)) {  
+           $GLOBALS["img"]='../icon/logo.png';
+            exit; 
+        }
+    }  
+?>
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="./icon/logo.png">
@@ -29,6 +49,8 @@
     ?>
   </div>
   <div class="black-layer"></div>
+  <div class="user-click" onmousemove="UserOn()"></div>
+  <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
   <div class="menuclose" id="menuClose"></div>
   <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
   <div class="btn" onclick="MenuOn();"></div>
@@ -52,7 +74,6 @@
 </div>
   <div class="black-board">
 <?php
-include './header.php';
 $pdo = PDOStart();  
 if (empty($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] < 1) {  
     $_GET['page'] = 1;  
