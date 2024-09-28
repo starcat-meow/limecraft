@@ -107,7 +107,7 @@ if(empty($shu))
 echo "<div class='post-box'>
         <div class='post'>  
     <div class='post-header'>  
-        <img src='".$shu['post-avatar']."' alt='用户头像' class='post-avatar'>  
+        <img src='".$shu['post_useravatar']."' alt='用户头像' class='post-avatar'>  
         <div class='post-meta'>  
             <h3 class='post-name'>".$shu['post_username']."</h3>  
             <p class='post-date'>发布日期:".$shu['date']."</p>

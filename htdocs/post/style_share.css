@@ -3,7 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.editor-box{
+  position:fixed;
+  top: 100px;
+  left:10%;
+  width: 80%;
+  height: 400px;
+}
 
 .user-click{
   position:fixed;
@@ -110,8 +116,7 @@
   margin: 5px 0;
 }
 body{
-  display:flex;
-  overflow-x: hidden;
+  
 }
 
 .fileuse{
@@ -171,9 +176,6 @@ body{
   .navbar-toggle-btn {
     display: block;
   }
-  br{
-    display: none;
-  }
     .title {
       position:fixed;
       top: 50px;
@@ -187,7 +189,22 @@ body{
       text-indent: 10px;
       border: 1px solid rgba(120,120,120,0.5);
       border-radius: 8px;
-      border-radius: 120px;
+      /* 增加磨砂质感 */
+      outline:none;
+    }
+    .text {
+      position:fixed;
+      top: 100px;
+      left:10%;
+      width: 80%;
+      height: 320px;
+      color: black;
+      /* 禁止选中 */
+      user-select: none;
+      
+      text-indent: 10px;
+      border: 1px solid rgba(120,120,120,0.5);
+      border-radius: 8px;
       /* 增加磨砂质感 */
       outline:none;
     }
@@ -210,8 +227,10 @@ body{
         outline:none;
       }
       .login{
-        margin-top:2%;
-        margin-left:0%;
+        position:fixed;
+      top: 580px;
+      left:10%;
+      width: 80%;
         background-color: #0015FF;
     background: linear-gradient(135deg, #5279FF, #25C4EA);
     backdrop-filter: blur(10px);
