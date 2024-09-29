@@ -122,10 +122,13 @@ echo "<div class='post-box'>
 }
 ?>
 <div class="page_change">
-<a>
-  <button>上一页</button>
+<a href="<?php $num=$_GET['page']-1; echo './?page='.$num; ?>">
+  <button class="ChangePage">←</button>
 </a>
-<form enctype='multipart/form-data' method='get' action="" id='form'>
+<button class="pagechange"><?php
+  echo $_GET['page'];
+  ?></button>
+<!--<form enctype='multipart/form-data' method='get' action="" id='form'>
   <select name='page' id='page' onchange='ToChangePage()'>
 <?php
 $pdo=PDOStart();
@@ -133,7 +136,19 @@ $stmt = $pdo->prepare("SELECT id FROM article");
 $stmt->execute(); 
 $arr = $stmt->fetchAll(); 
 $num_article=count($arr);
-$num_for=$num_article/8+1;//计算文章页数
+$num_for=($num_article-1)/8+1;//计算文章页数
+if($num_for<$_GET['page'])
+{
+  $num=$_GET['page']-1;
+  header("Location:./?page=".$num);
+  exit;
+}
+if($_GET['page']<=0)
+{
+  $num=1;
+  header("Location:./?page=".$num);
+  exit;
+}
 for($i=1;$i<=$num_for;$i++)
 {
 $selected=( $_GET['page'] == $i ? 'selected' : '');
@@ -143,14 +158,14 @@ echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
 ?>
   </select>
 </form>
-<a>
-  <button>下一页</button>
+-->
+<a href="<?php $num=$_GET['page']+1; echo './?page='.$num; ?>">
+  <button class="ChangePage">→</button>
 </a>
 </div>
   </div>
 <div class="introduce">
-  <br>
-  <p>◎Porwer by LimeCraft</p>
+  <p></p>
 </div>
 </body> 
 

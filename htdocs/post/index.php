@@ -65,10 +65,12 @@ if (!empty($_POST)) {
     $stmt->bindParam(4, $GLOBALS['date_time'], PDO::PARAM_STR);
     $stmt->bindParam(5, $GLOBALS['date_time'], PDO::PARAM_STR);
     $stmt->bindParam(6, $GLOBALS['gid'], PDO::PARAM_INT);
-    $stmt->bindParam(7, $id, PDO::PARAM_INT);
-    $stmt->bindParam(8, $id, PDO::PARAM_STR);
-    $stmt->bindParam(9, $id, PDO::PARAM_STR);
-    $stmt->bindParam(10,$id, PDO::PARAM_STR);
+    $permissions=0;
+    $stmt->bindParam(7, $permissions, PDO::PARAM_INT);
+    $empty='{}';
+    $stmt->bindParam(8, $empty, PDO::PARAM_STR);
+    $stmt->bindParam(9, $empty, PDO::PARAM_STR);
+    $stmt->bindParam(10,$empty, PDO::PARAM_STR);
     $stmt->bindParam(11, $GLOBALS['name'], PDO::PARAM_STR);
     $stmt->bindParam(12, $GLOBALS['img'], PDO::PARAM_STR);
     // 执行语句
@@ -150,7 +152,6 @@ if (!empty($_POST)) {
     <!-- 自定义编辑器工具栏 -->
     <div class="editor-box">
     <div id="toolbar">
-     
     </div>
 
     <!-- 创建编辑容器 -->
