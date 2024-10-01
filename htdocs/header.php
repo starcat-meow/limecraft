@@ -97,5 +97,19 @@ public function setPosts($art){
   $this->posts=$art;
 }
 }
+function GetPostsNum()
+{
+  $pdo=PDOStart();
+  $stmtt=$pdo->prepare("select * from `public` where key_ = 'num_article';");
+  $stmtt->execute();
+  $arrt=$stmtt->fetchALL();
+  $shut=$arrt[0];
+  $num_uid=$shut[1];
+  $num_uid++;
+  $stmt=$GLOBALS['pdo']->prepare("UPDATE public SET value = ".$num_uid." where key_ = 'num_article';");
+  $stmt->execute();
+  return $num_uid;
+}
+//uid+1并获取uid总数
 //验证当前用户cookie是否能用
 ?>

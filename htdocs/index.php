@@ -25,18 +25,17 @@ $stmt->execute();
 $arr = $stmt->fetchAll(); 
 $num_article=count($arr);
 $num_for=(int)(($num_article-1)/8+1);//计算文章页数
-if($num_for<$_GET['page'])
-{
-  $num=$num_for;
-  header("Location:./?page=".$num);
-  exit;
-}
-if($_GET['page']==0)
-{
-  $num=1;
-  header("Location:./?page=".$num);
-  exit;
-}
+$page = (int)($_GET['page']);
+if ($page < 1) {  
+    $page = 1; // 如果页码小于1，则重置为1  
+} elseif ($page > $num_for) {  
+    $page = $num_for; //如果页码大于最大页码，则设置为最大页码  
+} 
+// 如果当前页码不是用户请求的页码，则进行重定向  
+if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设置的 $_GET['page']  
+    header("Location: ./?page=" . $page);  
+    exit;  
+}  
 ?>
 <head>
   <meta charset="UTF-8">
@@ -138,17 +137,20 @@ $post->renderPosts();
 </div>
 </body> 
 <script>
-function fh(){
-  var but=document.getElementById('page');
-  var form=document.getElementById('form');
-  but.value="<?php $num=$_GET['page']-1; echo $num; ?>";
-  form.submit();
-}
-function xyg(){
-  var but=document.getElementById('page');
-  var form=document.getElementById('form');
-  but.value="<?php $num=$_GET['page']+1; echo $num; ?>";
-  form.submit();
+function fh() {  
+  var but = document.getElementById('page');  
+  var currentPage = parseInt(but.value, 10);  
+  if (currentPage > 1) { // 确保不会变成0或负数  
+    but.value = currentPage - 1;  
+    document.getElementById('form').submit();  
+  }  
+}  
+  
+function xyg() {  
+  var but = document.getElementById('page');  
+  var currentPage = parseInt(but.value, 10);  
+  but.value = currentPage + 1;  
+  document.getElementById('form').submit();  
 }
 </script>
 </html>

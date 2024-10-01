@@ -3,6 +3,7 @@
 include_once '../header.php';
 $pdo = PDOStart();
 UserCookieTest();
+
 if (!empty($_COOKIE['usercookie'])) {
   $cookie = $_COOKIE['usercookie'];
   $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");
@@ -10,6 +11,11 @@ if (!empty($_COOKIE['usercookie'])) {
   $stmt->execute();
   $arr = $stmt->fetchAll();
   $shu = $arr[0];
+  if($shu['gid']!=1)
+  {
+  print_r("该页面非管理员禁止访问");
+  exit;
+  }
   if ($shu['img'] != '') {
     $GLOBALS["img"] = $shu['img'];
   } else
@@ -57,8 +63,7 @@ if (!empty($_POST)) {
   $GLOBALS['date_time'] = date("Y-m-d H:i:s");
   if (!empty($arr)) {
     $stmt = $pdo->prepare("INSERT INTO `article`(`id`, `title`, `text`, `date`, `last_date`, `post_userid`, `permissions`, `comments`, `thumbs_up`, `collection`, `post_username`, `post_useravatar`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-    $id=114;
-    $stmt->bindParam(1, $id, PDO::PARAM_INT);
+    $stmt->bindParam(1, GetPostsNum(), PDO::PARAM_INT);
     // 绑定参数
     $stmt->bindParam(2, $_POST['title'], PDO::PARAM_STR);
     $stmt->bindParam(3, $_POST['text'], PDO::PARAM_STR); // 假设是整数用int，如果不是，请使用PDO::PARAM_STR
