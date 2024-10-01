@@ -72,7 +72,7 @@ if (!empty($_COOKIE['usercookie'])) {
     <div class="bj"></div>
     <div class="baise"></div>
     <div class="title">
-      <p class="title">LimeCraft</p>
+      <h1 class="title">LimeCraft</h1>
     </div>
     <a href="https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&vd_source=44fa48c3eecc09542e1a1f8cf45755d8" id="none-line">
       <button class="download">More</button>
@@ -121,13 +121,14 @@ echo "<div class='post-box'>
     </div>  ";
 }
 ?>
+
+<form method="get" action="." style="" id="form">
 <div class="page_change">
-<a href="<?php $num=$_GET['page']-1; echo './?page='.$num; ?>">
-  <button class="ChangePage">←</button>
-</a>
-<button class="pagechange"><?php
+  <button class="ChangePage" onclick="fh()">←</button>
+<input id="page" name="page" class="pagechange" type="number" value="<?php
   echo $_GET['page'];
-  ?></button>
+  ?>" onfocus="pageFocus()" onblur="pageBlur()" style=""></input>
+  <input class="ChangePage" type="submit" value=">>" id="go" style="margin-right:0;"></input>
 <!--<form enctype='multipart/form-data' method='get' action="" id='form'>
   <select name='page' id='page' onchange='ToChangePage()'>
 <?php
@@ -136,14 +137,14 @@ $stmt = $pdo->prepare("SELECT id FROM article");
 $stmt->execute(); 
 $arr = $stmt->fetchAll(); 
 $num_article=count($arr);
-$num_for=($num_article-1)/8+1;//计算文章页数
+$num_for=(int)(($num_article-1)/8+1);//计算文章页数
 if($num_for<$_GET['page'])
 {
-  $num=$_GET['page']-1;
+  $num=$num_for;
   header("Location:./?page=".$num);
   exit;
 }
-if($_GET['page']<=0)
+if($_GET['page']==0)
 {
   $num=1;
   header("Location:./?page=".$num);
@@ -153,20 +154,34 @@ for($i=1;$i<=$num_for;$i++)
 {
 $selected=( $_GET['page'] == $i ? 'selected' : '');
 //判断get页数并让下拉框选中当前页数～
-echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
+//echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
 }
 ?>
   </select>
 </form>
 -->
-<a href="<?php $num=$_GET['page']+1; echo './?page='.$num; ?>">
-  <button class="ChangePage">→</button>
-</a>
+
+  <button class="ChangePage" onclick="xyg()">→</button>
+
 </div>
+</form>
   </div>
 <div class="introduce">
   <p></p>
 </div>
 </body> 
-
+<script>
+function fh(){
+  var but=document.getElementById('page');
+  var form=document.getElementById('form');
+  but.value="<?php $num=$_GET['page']-1; echo $num; ?>";
+  form.submit();
+}
+function xyg(){
+  var but=document.getElementById('page');
+  var form=document.getElementById('form');
+  but.value="<?php $num=$_GET['page']+1; echo $num; ?>";
+  form.submit();
+}
+</script>
 </html>

@@ -19,15 +19,25 @@ body{
   background-color: rgba(255, 255, 255, 0.6);
       /* 增加磨砂质感 */
   backdrop-filter: blur(10px);
+  transition: all 0.6s ease;
+}
+.ChangePage:hover{
+  background-color: rgba(0, 255, 255, 0.8);
 }
 .pagechange{
   height:40px;
-  width:300px;
+  width:190px;
+  text-align: center;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 1);
   background-color: rgba(255, 255, 255, 0.6);
       /* 增加磨砂质感 */
   backdrop-filter: blur(10px);
+  outline: none;
+  transition: all 1s ease;
+}
+.pagechange:focus{
+  background-color:rgba(255, 255, 255, 0.2) ;
 }
 .useravatar{
   position:fixed;
