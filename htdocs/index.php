@@ -19,6 +19,24 @@ if (!empty($_COOKIE['usercookie'])) {
             exit; 
         }
     }  
+$pdo=PDOStart();
+$stmt = $pdo->prepare("SELECT id FROM article"); 
+$stmt->execute(); 
+$arr = $stmt->fetchAll(); 
+$num_article=count($arr);
+$num_for=(int)(($num_article-1)/8+1);//计算文章页数
+if($num_for<$_GET['page'])
+{
+  $num=$num_for;
+  header("Location:./?page=".$num);
+  exit;
+}
+if($_GET['page']==0)
+{
+  $num=1;
+  header("Location:./?page=".$num);
+  exit;
+}
 ?>
 <head>
   <meta charset="UTF-8">
@@ -50,7 +68,7 @@ if (!empty($_COOKIE['usercookie'])) {
     <?php
     if(!empty($_COOKIE['usercookie']))
     echo "<a href='./post'>
-      <button class='menu-btn'>发布(alpha)</button>
+      <button class='menu-btn'>发布</button>
     </a>"
     ?>
   </div>
@@ -98,28 +116,9 @@ $arr = $stmt->fetchAll();
 // $stmt->execute();  
 // $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];  
 // $totalPages = ceil($total / $perPage);  
-
-for($i=0;$i<8;$i++)
-{
-$shu=$arr[$i];
-if(empty($shu))
-  break;
-echo "<div class='post-box'>
-        <div class='post'>  
-    <div class='post-header'>  
-        <img src='".$shu['post_useravatar']."' alt='用户头像' class='post-avatar'>  
-        <div class='post-meta'>  
-            <h3 class='post-name'>".$shu['post_username']."</h3>  
-            <p class='post-date'>发布日期:".$shu['date']."</p>
-        </div>  
-            <div class='post-content'>  
-        <h2 class='post-title'>".$shu['title']."</h2>  
-        <p class='post-text' id='post-text'>".$shu['text']."</p>  
-    </div>  
-    </div>
-
-    </div>  ";
-}
+$post=new PostList();
+$post->setPosts($arr);
+$post->renderPosts();
 ?>
 
 <form method="get" action="." style="" id="form">
@@ -129,38 +128,6 @@ echo "<div class='post-box'>
   echo $_GET['page'];
   ?>" onfocus="pageFocus()" onblur="pageBlur()" style=""></input>
   <input class="ChangePage" type="submit" value=">>" id="go" style="margin-right:0;"></input>
-<!--<form enctype='multipart/form-data' method='get' action="" id='form'>
-  <select name='page' id='page' onchange='ToChangePage()'>
-<?php
-$pdo=PDOStart();
-$stmt = $pdo->prepare("SELECT id FROM article"); 
-$stmt->execute(); 
-$arr = $stmt->fetchAll(); 
-$num_article=count($arr);
-$num_for=(int)(($num_article-1)/8+1);//计算文章页数
-if($num_for<$_GET['page'])
-{
-  $num=$num_for;
-  header("Location:./?page=".$num);
-  exit;
-}
-if($_GET['page']==0)
-{
-  $num=1;
-  header("Location:./?page=".$num);
-  exit;
-}
-for($i=1;$i<=$num_for;$i++)
-{
-$selected=( $_GET['page'] == $i ? 'selected' : '');
-//判断get页数并让下拉框选中当前页数～
-//echo "<option value='{$i}' {$selected}>第 {$i} 页</option>";
-}
-?>
-  </select>
-</form>
--->
-
   <button class="ChangePage" onclick="xyg()">→</button>
 
 </div>

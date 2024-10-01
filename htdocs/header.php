@@ -66,4 +66,36 @@ function UserCookieTest()
   }
 }
 //验证当前用户cookie是否能用
+class PostList{
+  public $posts=[];
+public function renderPosts()
+{
+  $num=count($this->posts);
+  for($i=0;$i<$num;$i++)
+{
+$shu=$this->posts[$i];
+if(empty($shu))
+  break;
+echo "<div class='post-box'>
+        <div class='post'>  
+    <div class='post-header'>  
+        <img src='".htmlspecialchars($shu['post_useravatar'])."' alt='用户头像' class='post-avatar'>  
+        <div class='post-meta'>  
+            <h3 class='post-name'>".htmlspecialchars($shu['post_username'])."</h3>  
+            <p class='post-date'>发布日期:".htmlspecialchars($shu['date'])."</p>
+        </div>  
+            <div class='post-content'>  
+        <h2 class='post-title'>".htmlspecialchars($shu['title'])."</h2>  
+        <p class='post-text' id='post-text'>".$shu['text']."</p>  
+    </div>  
+    </div>
+
+    </div>  ";
+}
+}
+public function setPosts($art){
+  $this->posts=$art;
+}
+}
+//验证当前用户cookie是否能用
 ?>
