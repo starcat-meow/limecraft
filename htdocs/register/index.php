@@ -43,7 +43,7 @@ if (empty($arr1) && empty($arr2)) {
     header('Location:./notice');
     exit;
   }
-} elseif (!empty($arr2) {
+} elseif (!empty($arr2)) {
   $_SESSION['ifregister'] = 2;
 } elseif (empty($arr1)) {
   $_SESSION['ifregister'] = 1;

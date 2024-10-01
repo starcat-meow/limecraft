@@ -97,6 +97,7 @@ public function setPosts($art){
   $this->posts=$art;
 }
 }
+//帖子显示结构体
 function GetPostsNum()
 {
   $pdo=PDOStart();
@@ -110,6 +111,5 @@ function GetPostsNum()
   $stmt->execute();
   return $num_uid;
 }
-//uid+1并获取uid总数
-//验证当前用户cookie是否能用
+//post+1并获取总数
 ?>

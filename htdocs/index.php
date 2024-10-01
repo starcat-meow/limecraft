@@ -10,15 +10,18 @@ if (!empty($_COOKIE['usercookie'])) {
        $stmt->execute();  
        $arr = $stmt->fetchAll();  
         $shu = $arr[0]; 
-        if($shu['img']!='')
+        if(!empty($shu['img']))
            $GLOBALS["img"]=$shu['img'];
         else
-          $GLOBALS["img"]='../icon/logo.png';
+          $GLOBALS["img"]='./icon/logo.png';
         if (empty($arr)) {  
-           $GLOBALS["img"]='../icon/logo.png';
+           $GLOBALS["img"]='./icon/logo.png';
             exit; 
         }
     }  
+    else{
+      $GLOBALS["img"]='./icon/logo.png';
+    }
 $pdo=PDOStart();
 $stmt = $pdo->prepare("SELECT id FROM article"); 
 $stmt->execute(); 
