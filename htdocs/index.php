@@ -45,7 +45,7 @@ if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LimeCraft</title>
-  <link rel="stylesheet" href="./style.css?version=<?php echo date('YmdHi'); ?>">
+  <link rel="stylesheet" href="./style.css">
   <script src="./script.js"></script>
   <script src="./flower.js"></script>
 </head>
@@ -75,19 +75,21 @@ if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设
     ?>
   </div>
   <div id="main">
-  <div class="black-layer"></div>
-  <div class="user-click" onmousemove="UserOn()"></div>
-  <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
-  <div class="menuclose" id="menuClose"></div>
-  <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
-  <div class="btn" onclick="MenuOn();"></div>
-  <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="div-menu">
+      <div class="black-layer"></div>
+      <div class="user-click" onmousemove="UserOn()"></div>
+      <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
+      <div class="menuclose" id="menuClose"></div>
+      <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+      <div class="btn" onclick="MenuOn();"></div>
+      <div class="beiji">
+        <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
+          <span></span>
+          <span></span>
+         <span></span>
+       </div>
+      </div>
     </div>
-  </div>
   <div class="huadong">
     <div class="overlay"></div>
     <div class="bj"></div>

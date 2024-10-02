@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-session_start(); // 移动到文件顶部  
+if (!session_id()) session_start(); // 移动到文件顶部  
   $shu=array();
 include_once '../header.php';
 UserCookieTest();
@@ -55,7 +55,7 @@ if(isset($_POST['password']) && ($shu==array() || $shu['password'] != md5($_POST
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
-  <link rel="stylesheet" href="./style_share.css">
+  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="../flower.js"></script>
 </head>
@@ -72,22 +72,42 @@ if(isset($_POST['password']) && ($shu==array() || $shu['password'] != md5($_POST
 </style>
 
 <body>
-  <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="toggleNavbar()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<div class="menu-box" id="MenuBox">
+    <a href="../">
+    <button class="menu-btn">首页</button>
+    </a>
+    <a href="../login">
+    <button class="menu-btn">登录</button>
+    </a>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./user'>
+      <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./post'>
+      <button class='menu-btn'>发布</button>
+    </a>"
+    ?>
   </div>
-  <nav class="navbar">
-    <a href="..">
-      <button class="dao">首页</button>
-    </a>
-    <a href=".">
-      <button class="dao">登录</button>
-    </a>
-  </nav>
-
+  <div id="main">
+    <div class="div-menu">
+      <div class="black-layer"></div>
+      <div class="user-click" onmousemove="UserOn()"></div>
+      <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
+      <div class="menuclose" id="menuClose"></div>
+      <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+      <div class="btn" onclick="MenuOn();"></div>
+      <div class="beiji">
+        <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
+          <span></span>
+          <span></span>
+         <span></span>
+       </div>
+      </div>
+    </div>
   <div class="bj"></div>
   <div class="baise">
     <h1 class="title">登录</h1>
@@ -96,7 +116,6 @@ if(isset($_POST['password']) && ($shu==array() || $shu['password'] != md5($_POST
       <input class="password" type="password" name="password" placeholder="密码"></input>
           <P class="tip" style="color: red;font-size:10px; margin-bottom:15px;">
           <?php 
-          session_start();
       if((!empty($_POST['password']) || !empty($_POST['email'])) && ($_POST['password']=='' || $_POST['email']==''))
       echo '请输入完整的邮箱和密码';
       elseif(!empty($_POST) && $GLOBALS['ifregiter']==3)
@@ -113,5 +132,6 @@ if(isset($_POST['password']) && ($shu==array() || $shu['password'] != md5($_POST
   </div>
 
   <div class="overlay"></div>
+</div>
 </body>
 </html>
