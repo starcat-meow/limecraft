@@ -75,9 +75,12 @@ if (!empty($_COOKIE['usercookie'])) {
     <a href="../">
     <button class="menu-btn">首页</button>
     </a>
-    <a href="../login">
-    <button class="menu-btn">登录</button>
-    </a>
+    <?php
+    if(empty($_COOKIE['usercookie']))
+    echo "<a href='./login'>
+      <button class='menu-btn'>登录</button>
+    </a>"
+    ?>
     <?php
     if(!empty($_COOKIE['usercookie']))
     echo "<a href='../user'>

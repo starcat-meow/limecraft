@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-session_start(); // 移动到文件顶部  
+if (!session_id()) session_start(); // 移动到文件顶部  
 include_once '../../header.php';
 UserCookieTest();
 $pdo=PDOStart();
@@ -85,7 +85,7 @@ $stmt = $pdo->prepare("UPDATE `user` SET `img` = ? WHERE cookie = ?");
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
-  <link rel="stylesheet" href="./style_share.css">
+  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="../flower.js"></script>
 </head>
@@ -102,28 +102,43 @@ $stmt = $pdo->prepare("UPDATE `user` SET `img` = ? WHERE cookie = ?");
 </style>
 
 <body>
-  <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="toggleNavbar()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="navbar">
+<div class="menu-box" id="MenuBox">
     <a href="../../">
-      <button class="dao">首页</button>
-    </a>
-    <a href="../../login">
-      <button class="dao">登录</button>
+    <button class="menu-btn">首页</button>
     </a>
     <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='../'>
-      <button class='dao'>用户中心</button>
-    </a>";
+    if(empty($_COOKIE['usercookie']))
+    echo "<a href='../../login'>
+      <button class='menu-btn'>登录</button>
+    </a>"
     ?>
-  </nav>
-
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../../post'>
+      <button class='menu-btn'>发布</button>
+    </a>"
+    ?>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../../user'>
+      <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+  </div>
+  <div id="main">
+    <div class="div-menu">
+      <div class="black-layer"></div>
+      <div class="menuclose" id="menuClose"></div>
+      <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+      <div class="btn" onclick="MenuOn();"></div>
+      <div class="beiji">
+        <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
+          <span></span>
+          <span></span>
+         <span></span>
+       </div>
+      </div>
+    </div>
   <div class="bj"></div>
   <div class="baise">
     <h2 class="title">更改头像</h2>
@@ -136,7 +151,6 @@ $stmt = $pdo->prepare("UPDATE `user` SET `img` = ? WHERE cookie = ?");
       </div>
 	 <P class="tip" style="color: red;font-size:10px; margin-top:15px;margin-bottom:15px;">
   <?php 
-          session_start();
       if(empty($_POST['photo']))
       echo '请上传图片';
       elseif(!empty($GLOBALS['if']) && $GLOBALS['if']==4)
@@ -151,5 +165,6 @@ $stmt = $pdo->prepare("UPDATE `user` SET `img` = ? WHERE cookie = ?");
   </div>
 
   <div class="overlay"></div>
+    </div>
 </body>
 </html>
