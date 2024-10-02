@@ -13,7 +13,7 @@ if (!empty($_COOKIE['usercookie'])) {
         $shu=$arr[0];
         $gid=$shu['gid'];
         if (empty($gid)) {  
-           echo "该网站拒绝访问，别想没登录就进(嘿嘿" ;
+           echo "该页面拒绝访问，别想没完善个人信息就进(嘿嘿" ;
            exit;
         }
     }  
