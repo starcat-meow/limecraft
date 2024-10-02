@@ -43,3 +43,17 @@ function closeTransitionEndHandler(event) {
 }
 }
 }
+function showContent(index) {  
+  // 获取所有的 tab 和 content 元素  
+  const tabs = document.querySelectorAll('.tab');  
+  const contents = document.querySelectorAll('.content');  
+
+  // 移除所有 tab 的 active 类  
+  tabs.forEach(tab => tab.classList.remove('active'));  
+  // 移除所有 content 的 active 类  
+  contents.forEach(content => content.classList.remove('active'));  
+
+  // 添加 active 类到点击的 tab 和相应的 content  
+  tabs[index].classList.add('active');  
+  contents[index].classList.add('active');  
+}  

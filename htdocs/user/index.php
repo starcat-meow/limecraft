@@ -55,7 +55,7 @@ if (!empty($_COOKIE['usercookie'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
   <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
-  <script src="./script.js"></script>
+  <script src="./script.js?version=<?php echo date('YmdHi'); ?>"></script>
   <script src="../flower.js"></script>
 </head>
 <style>
@@ -118,6 +118,42 @@ if (!empty($_COOKIE['usercookie'])) {
         <p class="uid">
           <?php $text="UID:".$GLOBALS["gid"].""; echo $text; ?>
           </p>
+  </div>
+  <div class="userbar">
+  <ul class="tabs">  
+    <li class="tab" onclick="showContent(0)">个人信息</li>  
+    <li class="tab" onclick="showContent(1)">信用度</li>  
+    <li class="tab" onclick="showContent(2)">我发布的</li>
+    <li class="tab" onclick="showContent(3)">我的消息</li> 
+    <li class="tab" onclick="showContent(4)">我的订阅</li> 
+</ul>  
+  
+<div id="content1" class="content active">  
+    <p><?php 
+      $user=GetUserData();
+      if($user!=false)
+      {
+        echo "<p>用户名:{$user['name']}</p>";
+        echo "<p>UID:{$user['id']}</p>";
+        echo "<p>GID:{$user['gid']}</p>";
+        echo "<p>注册日期:{$user['register_date']}</p>";
+        echo "<p>最近访问:{$user['last_date']}</p>";
+        echo "<p>发布过的帖子:{$user['tie_post']}</p>";
+        echo "<p>发布过的评论:{$user['ping_post']}</p>";
+        echo "<p>注册IP:{$user['register_ip']}</p>";
+        echo "<p>最近访问IP:{$user['last_ip']}</p>";
+      }
+    ?></p>  
+</div>  
+<div id="content2" class="content">  
+
+</div>  
+<div id="content3" class="content">  
+
+</div>  
+<div id="content4" class="content">  
+ 
+</div>  
   </div>
 </body>
 </html>

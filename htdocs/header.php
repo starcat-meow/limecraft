@@ -112,4 +112,21 @@ function GetPostsNum()
   return $num_uid;
 }
 //post+1并获取总数
+function GetUserData(){
+  if(!empty($_COOKIE['usercookie']))
+  {
+  $pdo=PDOStart();
+  $stmtt=$pdo->prepare("select * from `user` where cookie = ?;");
+  $stmtt->bindParam(1, $_COOKIE['usercookie'], PDO::PARAM_STR); 
+  $stmtt->execute();
+  $arrt=$stmtt->fetchALL();
+  $shut=$arrt[0];
+  return $shut;
+  }
+  else
+  {
+    return false;
+  }
+}
+//说明：getuserdata获取usercookie符合的用户数据
 ?>

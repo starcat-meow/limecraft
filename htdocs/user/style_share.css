@@ -12,6 +12,44 @@
   height:35px;
   z-index: 6;
 }
+.userbar{
+  position: absolute;
+  top:160px;
+}
+.tabs {  
+  display: flex;  
+  cursor: pointer;  
+  padding: 0;  
+  margin: 0;  
+  list-style: none;  
+  overflow-x:auto;
+}  
+.tabs li {  
+  padding: 10px 20px;  
+  background-color: #f0f0f0;  
+  border: 1px solid #ccc;  
+  border-radius: 8px;
+  transition: background-color .4s ease;
+  transition: color .4s ease;
+  text-align: center;      
+  flex-shrink: 0;
+}  
+.tabs li:hover {  
+  background-color: blue;  
+  color:white;
+}  
+.tabs li.active {  
+  background-color: rgba(153, 153, 153, 0.527);  
+  color:white;
+}  
+.content {  
+  text-align: left;
+  display: none;  
+  overflow: hidden;
+}  
+.content.active {  
+  display: block;  
+}  
 .useravatar{
   position:fixed;
   top:2px;
@@ -321,7 +359,7 @@ body{
 {
   position: fixed;
   top:65px;
-  left:calc(260px + 200px);
+  left:calc(100% - 120px);
   width:80px;
   height:40px;
   text-align: center;
