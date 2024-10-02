@@ -24,20 +24,30 @@ if (empty($arr1) && empty($arr2)) {
     $gid = 0;
 
     // 准备 SQL 语句，使用命名参数
-    $stmt = $GLOBALS['pdo']->prepare("INSERT INTO `user`(`email`, `name`, `password`, `img`, `last_date`, `register_date`, `id`, `gid`, `register_ip`, `cookie`) VALUES (:email, :name, :password, '', :last_date, :register_date, :id, :gid, :register_ip, :cookie)");
+    $stmt = $GLOBALS['pdo']->prepare("INSERT INTO `user`(`email`, `name`, `password`, `img`, `last_date`, `register_date`, `id`, `gid`, `register_ip`, `cookie`, `tie_post`, `ping_post`, `last_ip`, `subscribe`, `subscribed`, `collection`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
     // 绑定参数
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(1, $email);
+    $stmt->bindParam(2, $name);
     $password = $_POST['password'];
     $hashedPassword = md5($password);
-    $stmt->bindParam(':password', $hashedPassword);
-    $stmt->bindParam(':last_date', $now);
-    $stmt->bindParam(':register_date', $now);
-    $stmt->bindParam(':id', $thenum_uid);
-    $stmt->bindParam(':gid', $gid);
-    $stmt->bindParam(':register_ip', $ip);
-    $stmt->bindParam(':cookie', $cookie);
+    $stmt->bindParam(3, $hashedPassword);
+    $img="../icon/logo.png";
+    $stmt->bindParam(4, $img);
+    $stmt->bindParam(5, $now);
+    $stmt->bindParam(6, $now);
+    $stmt->bindParam(7, $thenum_uid);
+    $stmt->bindParam(8, $gid);
+    $stmt->bindParam(9, $ip);
+    $stmt->bindParam(10, $cookie);
+    $num_0=0;
+    $stmt->bindParam(11, $num_0);
+    $stmt->bindParam(12, $num_0);
+    $stmt->bindParam(13, $ip);
+    $json="{}";
+    $stmt->bindParam(14, $json);
+    $stmt->bindParam(15, $json);
+    $stmt->bindParam(16, $json);
     $stmt->execute();
     $_SESSION['username'] = "user".$thenum_uid;
     header('Location:./notice');
@@ -118,8 +128,8 @@ if (empty($arr1) && empty($arr2)) {
     <h1 class="title">注册</h1>
     <form method="post" action=".">
       <input class="youxiang" type="email" name="email" placeholder="邮箱"></input>
-      <input class="password" type="password" name="password" style="margin-top:30px;" placeholder="密码"></input>
-      <input class="password" type="password" style="margin-top:20px;" name="againpassword" placeholder="再次输入密码"></input>
+      <input class="password" type="password" name="password" placeholder="密码"></input>
+      <input class="password" type="password" name="againpassword" placeholder="再次输入密码"></input>
       <P class="tip" style="color: red;font-size:10px; margin-bottom:15px;">
         <?php
         if (!empty($_POST) && ($_POST['password'] == '' || $_POST['email'] == '' || $_POST['againpassword'] == ''))
