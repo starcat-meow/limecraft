@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include_once '../header.php';
-session_start(); // 移动到文件顶部  
+if (!session_id()) session_start(); // 移动到文件顶部  
 $pdo=PDOStart();
 UserCookieTest();
 if (!empty($_COOKIE['usercookie'])) {  
@@ -54,7 +54,7 @@ if (!empty($_COOKIE['usercookie'])) {
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
-  <link rel="stylesheet" href="./style_share.css">
+  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="../flower.js"></script>
 </head>
@@ -71,14 +71,20 @@ if (!empty($_COOKIE['usercookie'])) {
 </style>
 
 <body>
-    <div class="menu-box" id="MenuBox">
+<div class="menu-box" id="MenuBox">
     <a href="../">
     <button class="menu-btn">首页</button>
     </a>
     <?php
     if(empty($_COOKIE['usercookie']))
-    echo "<a href='./login'>
+    echo "<a href='../login'>
       <button class='menu-btn'>登录</button>
+    </a>"
+    ?>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../post'>
+      <button class='menu-btn'>发布</button>
     </a>"
     ?>
     <?php
@@ -88,20 +94,21 @@ if (!empty($_COOKIE['usercookie'])) {
     </a>"
     ?>
   </div>
-  <button class="editor">编辑</button>
-  <div class="black-layer"></div>
-  <div class="user-click" onmousemove="UserOn()"></div>
-  <div class="menuclose" id="menuClose"></div>
-  <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
-  <div class="btn" onclick="MenuOn();"></div>
-  <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
-      <span></span>
-      <span></span>
-      <span></span>
+  <div id="main">
+    <div class="div-menu">
+      <div class="black-layer"></div>
+      <div class="menuclose" id="menuClose"></div>
+      <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+      <div class="btn" onclick="MenuOn();"></div>
+      <div class="beiji">
+        <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
+          <span></span>
+          <span></span>
+         <span></span>
+       </div>
+      </div>
     </div>
-  </div>
-
+  <button class="editor">编辑</button>
   <div class="img-box">
     <a href="./avatar">
     <img src="<?php echo $GLOBALS["img"]; ?>" class="img" draggable="flase">

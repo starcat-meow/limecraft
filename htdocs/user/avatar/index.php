@@ -85,7 +85,7 @@ $stmt = $pdo->prepare("UPDATE `user` SET `img` = ? WHERE cookie = ?");
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
-  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
+  <link rel="stylesheet" href="./style_share.css">
   <script src="./script.js"></script>
   <script src="../flower.js"></script>
 </head>

@@ -363,3 +363,12 @@ body{
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
 }
+.menu-box.active{
+  left: 0%;
+}
+.menuclose.active{
+  opacity: 1;
+}
+.menucloseclick.active{
+  top: 0;
+}
