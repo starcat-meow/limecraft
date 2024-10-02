@@ -74,6 +74,7 @@ if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设
     </a>"
     ?>
   </div>
+  <div id="main">
   <div class="black-layer"></div>
   <div class="user-click" onmousemove="UserOn()"></div>
   <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
@@ -137,6 +138,7 @@ $post->renderPosts();
   </div>
 <div class="introduce">
   <p></p>
+</div>
 </div>
 </body> 
 <script>
