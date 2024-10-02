@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
-session_start();
+if (!session_id()) session_start();
 
 ?>
+
 <html>
 
 <head>
@@ -31,7 +32,7 @@ session_start();
 </style>
 
 <body>
-  <div class="beiji">
+<div class="beiji">
     <div class="navbar-toggle-btn" onclick="toggleNavbar()">
       <span></span>
       <span></span>
@@ -40,24 +41,13 @@ session_start();
   </div>
   <nav class="navbar">
     <a href="../../">
-      <button class="dao">首页</button>
+      <button class="dao">返回首页</button>
     </a>
-    <a href="../../login">
-      <button class="dao">登录</button>
-    </a>
-    <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='../../user'>
-      <button class='dao'>用户中心</button>
-    </a>"
-    ?>
   </nav>
-
   <div class="bj"></div>
-  
   </div>
   <p class="title">注册成功</p>
-  <p class="b">欢迎<?php session_start(); echo $_SESSION['username']; ?>来到本站喵～</p>
+  <p class="b">欢迎<?php echo $_SESSION['username']; ?>来到本站喵～</p>
   <div class="overlay"></div>
 </body>
 </html>

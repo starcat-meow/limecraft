@@ -97,7 +97,7 @@ if (!empty($_POST)) {
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>发表</title>
-  <link rel="stylesheet" href="./style_share.css">
+  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="../flower.js">
     

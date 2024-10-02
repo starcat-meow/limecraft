@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
-session_start();
+if (!session_id()) session_start();
 include '../../header.php';
 UserCookieTest();
+
 ?>
 <html>
 
@@ -11,7 +12,7 @@ UserCookieTest();
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>login</title>
-  <link rel="stylesheet" href="./style_share.css">
+  <link rel="stylesheet" href="./style_share.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="../../flower.js"></script>
 </head>
@@ -41,24 +42,15 @@ UserCookieTest();
   </div>
   <nav class="navbar">
     <a href="../../">
-      <button class="dao">首页</button>
+      <button class="dao">返回首页</button>
     </a>
-    <a href="../">
-      <button class="dao">登录</button>
-    </a>
-    <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='../../user'>
-      <button class='dao'>用户中心</button>
-    </a>"
-    ?>
   </nav>
 
   <div class="bj"></div>
   
   </div>
   <p class="title">登录成功</p>
-  <p class="b">欢迎<?php session_start(); echo $_SESSION['username']; ?>回到本站喵～</p>
+  <p class="b">欢迎<?php echo $_SESSION['username']; ?>回到本站喵～</p>
   <div class="overlay"></div>
 </body>
 </html>

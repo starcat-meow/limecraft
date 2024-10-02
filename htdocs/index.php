@@ -58,19 +58,22 @@ if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设
     <a href="./">
     <button class="menu-btn">首页</button>
     </a>
-    <a href="./login">
-    <button class="menu-btn">登录</button>
-    </a>
     <?php
-    if(!empty($_COOKIE['usercookie']))
-    echo "<a href='./user'>
-      <button class='menu-btn'>用户中心</button>
+    if(empty($_COOKIE['usercookie']))
+    echo "<a href='./login'>
+      <button class='menu-btn'>登录</button>
     </a>"
     ?>
     <?php
     if(!empty($_COOKIE['usercookie']))
     echo "<a href='./post'>
       <button class='menu-btn'>发布</button>
+    </a>"
+    ?>
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./user'>
+      <button class='menu-btn'>用户中心</button>
     </a>"
     ?>
   </div>

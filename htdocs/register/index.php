@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-session_start();
+if (!session_id()) session_start();
 include_once '../header.php';
 $pdo = PDOStart();
 UserCookieTest();
@@ -77,38 +77,51 @@ if (empty($arr1) && empty($arr2)) {
 </style>
 
 <body>
-  <div class="beiji">
-    <div class="navbar-toggle-btn" onclick="toggleNavbar()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="navbar">
-    <a href="..">
-      <button class="dao">首页</button>
+<div class="menu-box" id="MenuBox">
+    <a href="../">
+    <button class="menu-btn">首页</button>
     </a>
     <a href="../login">
-      <button class="dao">登录</button>
+    <button class="menu-btn">登录</button>
     </a>
     <?php
-    if (!empty($_COOKIE['usercookie']))
-      echo "<a href='../user'>
-      <button class='dao'>用户中心</button>
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./user'>
+      <button class='menu-btn'>用户中心</button>
     </a>"
     ?>
-  </nav>
-
+    <?php
+    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='./post'>
+      <button class='menu-btn'>发布</button>
+    </a>"
+    ?>
+  </div>
+  <div id="main">
+    <div class="div-menu">
+      <div class="black-layer"></div>
+      <div class="user-click" onmousemove="UserOn()"></div>
+      <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
+      <div class="menuclose" id="menuClose"></div>
+      <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
+      <div class="btn" onclick="MenuOn();"></div>
+      <div class="beiji">
+        <div class="navbar-toggle-btn" onclick="MenuOn();" id="menubutton">
+          <span></span>
+          <span></span>
+         <span></span>
+       </div>
+      </div>
+    </div>
   <div class="bj"></div>
   <div class="baise">
     <h1 class="title">注册</h1>
     <form method="post" action=".">
       <input class="youxiang" type="email" name="email" placeholder="邮箱"></input>
-      <input class="password" type="password" name="password" placeholder="密码"></input>
-      <input class="password" type="password" name="againpassword" placeholder="再次输入密码"></input>
+      <input class="password" type="password" name="password" style="margin-top:30px;" placeholder="密码"></input>
+      <input class="password" type="password" style="margin-top:20px;" name="againpassword" placeholder="再次输入密码"></input>
       <P class="tip" style="color: red;font-size:10px; margin-bottom:15px;">
         <?php
-        session_start();
         if (!empty($_POST) && ($_POST['password'] == '' || $_POST['email'] == '' || $_POST['againpassword'] == ''))
           echo '请输入完整的邮箱和密码';
         elseif (!empty($_POST) && $_POST['password'] != $_POST['againpassword'])
@@ -129,8 +142,7 @@ if (empty($arr1) && empty($arr2)) {
   </div>
 
   <div class="overlay"></div>
-  <br>
-  <br>
+</div>
 </body>
 
 </html>
