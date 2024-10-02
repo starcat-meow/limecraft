@@ -119,10 +119,7 @@ body{
   z-index: 11;
   transition:left 0.5s ease;
 }
-.huadong{
-  overflow: scroll;
-  height: 100vh;
-}
+
 .beiji{
   position: fixed;
   top: 3px;
@@ -361,9 +358,10 @@ a {
 }
 .bj{
   margin-left:160px;
+  width:calc(100% - 160px);
 }
 .overlay{
-
+  width:calc(100% - 160px);
   margin-left:160px;
 }
   .title {

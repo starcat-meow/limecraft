@@ -10,7 +10,18 @@
   width: 80%;
   height: 400px;
 }
-
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=huge]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before{
+  content:"32px" !important;
+}
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=small]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before{
+  content:"10px" !important;
+}
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=large]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before{
+  content:"18px" !important;
+}
+.ql-snow .ql-picker.ql-size .ql-picker-label::before, .ql-snow .ql-picker.ql-size .ql-picker-item::before{
+  content:"大小" !important;
+}
 .user-click{
   position:fixed;
   top:0px;
@@ -115,10 +126,6 @@
   background-color: black;
   margin: 5px 0;
 }
-body{
-  
-}
-
 .fileuse{
   top: 50px;
   margin-left: 10%;
@@ -255,32 +262,85 @@ body{
 }
 
 @media screen and (min-width: 769px) {
-  .navbar {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-      z-index: 99;
-  }
-
-  .navbar a {
-    padding: 8px;
-  }
-  .navbar-toggle-btn {
+  .navbar-toggle-btn{
     display: none;
   }
+  .menuclose{
+    display: none;
+  }
+  .menucloseclick{
+    display: none;
+  }
+  #main{
+    margin-left:160px;
+  }
+  .post{
+    margin-left:160px;
+  }
+  .menu-box{
+    position: fixed;
+    top: 0;
+    left:0%;
+    width:160px;
+    display:inline-block;
+    background-color: rgba(105, 105, 105, 0.18);
+  }
+  .bj{
+    margin-left:160px;
+  }
+  .black-layer{
+    display: none;
+  }
+  .useravatar{
+    display: none;
+  }
+  .overlay{
+    margin-left:160px;
+  }
   .title {
-    text-align: center;
-    color: white;
+    position:fixed;
+    top: 20px;
+    left: 180px;
+    width: calc(100% - 200px);
+    height: 40px;
+    color: black;
     /* 禁止选中 */
     user-select: none;
-    letter-spacing: 5px;
-    text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+    letter-spacing: 2px;
+    text-indent: 10px;
+    border: 1px solid rgba(120,120,120,0.5);
+    border-radius: 8px;
+    /* 增加磨砂质感 */
+    outline:none;
   }
+  .editor-box{
+    position:fixed;
+    top: 70px;
+    left:180px;
+    width: calc(100% - 200px);
+    height:70%;
+  }
+    .login{
+      position:fixed;
+    
+    left:180px;
+    width: calc(100% - 200px);
+      background-color: #0015FF;
+  background: linear-gradient(135deg, #5279FF, #25C4EA);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  color: white;
+  height: 40px;
+  border: none;
+  text-align: center;
+  outline: none;
+  line-height: 8px;
+  font-size: 15px;
+  top: calc(70% + 130px);
+    }
+    a{
+      text-decoration: none;
+    }
 
 }
 .dao {

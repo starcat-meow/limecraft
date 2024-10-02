@@ -63,7 +63,8 @@ if (!empty($_POST)) {
   $GLOBALS['date_time'] = date("Y-m-d H:i:s");
   if (!empty($arr)) {
     $stmt = $pdo->prepare("INSERT INTO `article`(`id`, `title`, `text`, `date`, `last_date`, `post_userid`, `permissions`, `comments`, `thumbs_up`, `collection`, `post_username`, `post_useravatar`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-    $stmt->bindParam(1, GetPostsNum(), PDO::PARAM_INT);
+    $post_num=GetPostsNum();
+    $stmt->bindParam(1, $post_num, PDO::PARAM_INT);
     // 绑定参数
     $stmt->bindParam(2, $_POST['title'], PDO::PARAM_STR);
     $stmt->bindParam(3, $_POST['text'], PDO::PARAM_STR); // 假设是整数用int，如果不是，请使用PDO::PARAM_STR
@@ -168,16 +169,23 @@ if (!empty($_POST)) {
 </div>
     <!-- 初始化编辑器，snow主题 -->
     <script>
+
       const editor = new Quill('#editor', {
         modules: {
           toolbar:  [
       // 默认的
-      [{ header: [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'link'],
+      [{'size':['small','large','huge']}],
+      ['bold','italic', 'underline','strike',{'color':[]}],
       [{ list: 'ordered'}, { list: 'bullet' }],
       [{ 'align':[] }],
-      ['image']
+      ['image','link','code-block'],
     ],
+    
+    syntax:{
+      highlight:text=>{
+        return hljs.highlightAuto(text).value;
+      }
+    }
         },
         theme: 'snow'
       }
