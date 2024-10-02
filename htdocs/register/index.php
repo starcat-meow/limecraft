@@ -110,8 +110,6 @@ if (empty($arr1) && empty($arr2)) {
   <div id="main">
     <div class="div-menu">
       <div class="black-layer"></div>
-      <div class="user-click" onmousemove="UserOn()"></div>
-      <img class="useravatar" src="<?php echo $GLOBALS["img"];?>">
       <div class="menuclose" id="menuClose"></div>
       <div class="menucloseclick" onclick="MenuOn();" id="menulose"></div>
       <div class="btn" onclick="MenuOn();"></div>
