@@ -122,10 +122,11 @@ if (!empty($_COOKIE['usercookie'])) {
   <div class="userbar">
   <ul class="tabs">  
     <li class="tab" onclick="showContent(0)">个人信息</li>  
-    <li class="tab" onclick="showContent(1)">信用度</li>  
-    <li class="tab" onclick="showContent(2)">我发布的</li>
-    <li class="tab" onclick="showContent(3)">我的消息</li> 
-    <li class="tab" onclick="showContent(4)">我的订阅</li> 
+    <li class="tab" onclick="showContent(1);ds();">信用度</li> 
+    <li class="tab" onclick="showContent(2);">任务</li> 
+    <li class="tab" onclick="showContent(3)">我发布的</li>
+    <li class="tab" onclick="showContent(4)">我的消息</li> 
+    <li class="tab" onclick="showContent(5)">我的订阅</li> 
 </ul>  
   
 <div id="content1" class="content active">  
@@ -146,14 +147,46 @@ if (!empty($_COOKIE['usercookie'])) {
     ?></p>  
 </div>  
 <div id="content2" class="content">  
+<div class="progress-circle">
+  <svg>
+    <circle stroke="var(--inactive-color)" 
+            style="stroke-dasharray: calc(3.1415 * var(--r) * var(--active-degree) / 180),
+                                     calc(3.1415 * var(--r) * var(--gap-degree) / 180)" 
+    />
+    <circle stroke="var(--color)"
+            class="progress-value"
+            style="stroke-dasharray:calc(3.1415 * var(--r) * var(--percent) * var(--active-degree) / 180 / 100), 1000"
+            />
+  </svg>
+  
+</div>
 
 </div>  
 <div id="content3" class="content">  
-
+  <ol>
+  <li class="task-box">
+    <p class="task-text">1.每日签到 +1
+      <button class="finish" style="<?php echo "background-color:green;"?>">完成任务</button>
+    </p>
+    </li>
+  <li class="task-box">
+  <p class="task-text">2.完善个人信息 +20
+  <button class="finish">完成任务</button>
+  </p>
+  </li>
+  </ol>
 </div>  
 <div id="content4" class="content">  
  
 </div>  
   </div>
 </body>
+<script>
+function ds(){
+  document.documentElement.style.setProperty('--percent', <?php
+  $userdata=GetUserData();
+  echo $userdata['credit'];
+    ?>);
+}
+</script>
 </html>
