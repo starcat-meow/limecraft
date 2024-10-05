@@ -159,7 +159,8 @@ body{
     padding: 20px;  
     overflow:hidden;
     box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.2);
-   
+   margin-left:10px;
+   margin-right:10px;
 }  
   
 /* 头像样式 */  

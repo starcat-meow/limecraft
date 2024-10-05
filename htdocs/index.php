@@ -46,7 +46,7 @@ if ($page != $_GET['page'] ?? null) { // 使用 null 合并运算符处理未设
   <link rel="icon" href="./icon/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LimeCraft</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?version=<?php echo date('YmdHi'); ?>">
   <script src="./script.js"></script>
   <script src="./flower.js"></script>
 </head>

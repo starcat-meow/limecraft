@@ -58,3 +58,18 @@ function showContent(index) {
   contents[index].classList.add('active');  
 }  
 
+function fh() {  
+  var but = document.getElementById('page');  
+  var currentPage = parseInt(but.value, 10);  
+  if (currentPage > 1) { // 确保不会变成0或负数  
+    but.value = currentPage - 1;  
+    document.getElementById('form').submit();  
+  }  
+}  
+  
+function xyg() {  
+  var but = document.getElementById('page');  
+  var currentPage = parseInt(but.value, 10);  
+  but.value = currentPage + 1;  
+  document.getElementById('form').submit();  
+}

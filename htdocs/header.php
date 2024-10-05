@@ -66,17 +66,70 @@ function UserCookieTest()
   }
 }
 //验证当前用户cookie是否能用
+function GetId(){
+  if(!empty($_COOKIE['usercookie']))
+  {
+  $pdo=PDOStart();
+  $stmt = $pdo->prepare("SELECT id FROM user WHERE cookie = ?");  
+  $stmt->bindParam(1, $_COOKIE['usercookie'], PDO::PARAM_STR);  
+  $stmt->execute();  
+  $arr = $stmt->fetchAll(); 
+  $shu=$arr[0];
+  return $shu['id'];
+  }
+  else{
+    return false;
+  }
+}
+//使用usercookie获取用户id
+function truncateHtmlWithBr($html, $maxLength, $encoding = 'UTF-8') {  
+  $brPositions = [];  
+  if (preg_match_all('/<br\s*\/?>/iu', $html, $matches, PREG_OFFSET_CAPTURE)) {  
+      foreach ($matches[0] as $match) {  
+          $brPositions[] = ['position' => $match[1], 'length' => strlen($match[0])];  
+      }  
+  }  
+
+  $cleanHtml = preg_replace('/<(?!\/?br\s*\/?)[^>]+>/iu', '', $html);  
+  $textLengthWithoutBr = mb_strlen($cleanHtml, $encoding);  
+  if ($textLengthWithoutBr <= $maxLength) {  
+      return $html;  
+  }  
+  $truncatePosition = $maxLength;  
+  foreach ($brPositions as $br) {    
+      if ($br['position'] > $maxLength - 5 && $br['position'] < $maxLength) {   
+          if ($br['position'] + $br['length'] > $maxLength) {  
+              $truncatePosition = $br['position']; // 或者 $br['position'] + $br['length']，根据需要调整  
+          }   
+          break;  
+      }  
+  }  
+  $truncatedHtml = mb_substr($html, 0, $truncatePosition, $encoding);  
+  if ($truncatePosition < mb_strlen($html, $encoding)) {  
+      $afterTruncate = mb_substr($html, $truncatePosition, 1, $encoding);  
+      if (trim($afterTruncate) !== '') {  
+          $truncatedHtml .= '...';  
+      }  
+  }  
+
+  // 返回截断后的HTML文本  
+  return $truncatedHtml;  
+}  
+
 class PostList{
-  public $posts=[];
+  private $posts=[];
+  private $maxLength=120;
 public function renderPosts()
 {
   $num=count($this->posts);
   for($i=0;$i<$num;$i++)
-{
-$shu=$this->posts[$i];
-if(empty($shu))
-  break;
-echo "<div class='post-box'>
+  {
+    $shu=$this->posts[$i];
+    //$truncatedText = truncateHtmlWithBr($shu['text'], $this->maxLength);  
+    //$shu['text'] = $truncatedText;  
+    if(empty($shu))
+      break;
+    echo "<div class='post-box'>
         <div class='post'>  
     <div class='post-header'>  
         <img src='".htmlspecialchars($shu['post_useravatar'])."' alt='用户头像' class='post-avatar'>  
@@ -91,10 +144,18 @@ echo "<div class='post-box'>
     </div>
 
     </div>  ";
-}
+  }
 }
 public function setPosts($art){
   $this->posts=$art;
+}
+public function setIdPosts($id): void{
+  $pdo=PDOStart();
+  $stmt = $pdo->prepare("SELECT id, title, text, date, post_username, post_useravatar FROM article WHERE post_userid = ?");  
+  $stmt->bindParam(1, $id, PDO::PARAM_INT);  
+  $stmt->execute();  
+  $arr = $stmt->fetchAll();  
+  $this->posts=$arr;
 }
 }
 //帖子显示结构体

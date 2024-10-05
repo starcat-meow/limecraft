@@ -178,7 +178,37 @@ if (!empty($_COOKIE['usercookie'])) {
   </ol>
 </div>  
 <div id="content4" class="content">  
+ <?php 
+ $post=new PostList();
+ $pdo=PDOStart();
+ if (empty($_POST['page']) || !is_numeric($_POST['page']) || $_POST['page'] < 1) {  
+  $_POST['page'] = 1;  
+}  
+$perPage = 8; // 每页显示的记录数  
+$begin = ($_POST['page'] - 1) * $perPage;  
+$end = $begin + $perPage - 1;  
+  $stmt = $pdo->prepare("SELECT id, title, text, date, post_username, post_useravatar FROM article WHERE post_userid = ? ORDER BY id DESC LIMIT ? , ?");  
+  $id=GetId();
+  $stmt->bindParam(1, $id, PDO::PARAM_INT);  
+  $stmt->bindParam(2, $begin, PDO::PARAM_INT);  
+$stmt->bindParam(3, $perPage, PDO::PARAM_INT);  
+  $stmt->execute();  
+  $arr = $stmt->fetchAll();  
+ $post->setPosts($arr);
+ $post->renderPosts();
  
+ ?>
+ <form method="post" action="." style="" id="form">
+<div class="page_change">
+  <button class="ChangePage" onclick="fh()">←</button>
+<input id="page" name="page" class="pagechange" type="number" value="<?php
+  echo $_POST['page'];
+  ?>" onfocus="pageFocus()" onblur="pageBlur()" style=""></input>
+  <input class="ChangePage" type="submit" value=">>" id="go" style="margin-right:0;"></input>
+  <button class="ChangePage" onclick="xyg()">→</button>
+
+</div>
+</form>
 </div>  
   </div>
 </body>
@@ -188,6 +218,11 @@ function ds(){
   $userdata=GetUserData();
   echo $userdata['credit'];
     ?>);
+}
+let post=<?php echo $_POST['page'] ?>;
+if(post > 1)
+{
+  showContent(3);
 }
 </script>
 </html>
