@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include_once '../header.php';
+if (!session_id()) session_start();
 $pdo = PDOStart();
 UserCookieTest();
 time_ip_update();
@@ -24,9 +25,6 @@ if (!empty($_COOKIE['usercookie'])) {
     exit;
   }
 }
-?>
-<?php
-session_start(); // 移动到文件顶部
 $pdo = PDOStart();
 UserCookieTest();
 if (!empty($_COOKIE['usercookie'])) {

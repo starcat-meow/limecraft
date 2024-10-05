@@ -115,7 +115,7 @@ function truncateHtmlWithBr($html, $maxLength, $encoding = 'UTF-8') {
   // 返回截断后的HTML文本  
   return $truncatedHtml;  
 }  
-
+//截取帖子
 class PostList{
   private $posts=[];
   private $maxLength=120;
@@ -204,4 +204,29 @@ function time_ip_update(){
   }
 }
 //最近登录ip和时间更新
+function FirstMessage(){
+  $b['induction']['num']=1;
+  $b['induction']['update']=0;
+  $b[0]['title']="欢迎来到LimeCraft官网!";
+  $b[0]['text']="感谢您的注册喵~";
+  $b[0]['datetime']=GetDateTime();
+  return json_encode($b);
+}
+//返回注册消息（json格式）
+class Message{
+private $message=[];
+public function GetMessageById($id){
+  $pdo=PDOStart();
+  $stmtt=$pdo->prepare("select message from `public` where id = ?;");
+  $stmtt->bindParam(1,$id,PDO::PARAM_INT);
+  $stmtt->execute();
+  $arrt=$stmtt->fetchALL();
+  $shut=$arrt[0];
+  $this->message=json_decode($shut['message']);
+}
+public function AddMessage(){
+
+}
+}
+//有关message显示，查询，插入，删除的结构体
 ?>

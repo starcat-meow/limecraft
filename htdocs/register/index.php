@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 if (!session_id()) session_start();
-include_once '../header.php';
+include '../header.php';
 $pdo = PDOStart();
 UserCookieTest();
 $ip = GetIp();
@@ -24,7 +24,7 @@ if (empty($arr1) && empty($arr2)) {
     $gid = 0;
 
     // 准备 SQL 语句，使用命名参数
-    $stmt = $GLOBALS['pdo']->prepare("INSERT INTO `user`(`email`, `name`, `password`, `img`, `last_date`, `register_date`, `id`, `gid`, `register_ip`, `cookie`, `tie_post`, `ping_post`, `last_ip`, `subscribe`, `subscribed`, `collection`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt = $GLOBALS['pdo']->prepare("INSERT INTO `user`(`email`, `name`, `password`, `img`, `last_date`, `register_date`, `id`, `gid`, `register_ip`, `cookie`, `tie_post`, `ping_post`, `last_ip`, `subscribe`, `subscribed`, `collection`, `message`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
     // 绑定参数
     $stmt->bindParam(1, $email);
@@ -48,6 +48,8 @@ if (empty($arr1) && empty($arr2)) {
     $stmt->bindParam(14, $json);
     $stmt->bindParam(15, $json);
     $stmt->bindParam(16, $json);
+    $message=FirstMessage();
+    $stmt->bindParam(17, $message);
     $stmt->execute();
     $_SESSION['username'] = "user".$thenum_uid;
     header('Location:./notice');

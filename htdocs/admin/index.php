@@ -61,6 +61,7 @@ if (!empty($_COOKIE['usercookie'])) {
     $a[$i]['state']=false;
     }
     //print_r(json_encode($a));
+    
 ?>
 
 <html>
