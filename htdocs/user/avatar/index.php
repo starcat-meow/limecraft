@@ -3,6 +3,7 @@
 if (!session_id()) session_start(); // 移动到文件顶部  
 include_once '../../header.php';
 UserCookieTest();
+time_ip_update();
 $pdo=PDOStart();
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  

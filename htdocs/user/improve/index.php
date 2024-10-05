@@ -4,6 +4,7 @@ if (!session_id()) session_start(); // 移动到文件顶部
 include_once '../../header.php';
 $pdo=PDOStart();
 UserCookieTest();
+time_ip_update();
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  
         $stmt = $pdo->prepare("SELECT name,gid FROM user WHERE cookie = ?");  

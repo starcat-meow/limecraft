@@ -3,7 +3,7 @@
 if (!session_id()) session_start();
 include '../../header.php';
 UserCookieTest();
-
+time_ip_update();
 ?>
 <html>
 

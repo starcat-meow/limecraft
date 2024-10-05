@@ -1,0 +1,573 @@
+* {
+  /* 去除浏览器默认内外边距 */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --percent: 0;  /* 百分数 */
+}
+/* 内容容器的样式 */  
+.content {  
+  padding: 20px;  
+  background-color: #f9f9f9;  
+  border-radius: 8px;  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+}  
+  
+/* 有序列表的样式 */  
+ol {  
+  list-style-type: none; /* 移除默认的列表样式 */  
+  padding-left: 0;  
+}  
+  
+/* 任务盒子的样式 */  
+.task-box {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center; /* 垂直居中对齐 */  
+  padding: 15px;  
+  margin-bottom: 10px;  
+  background-color: #fff;  
+  border: 1px solid #ddd;  
+  border-radius: 8px;  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+}  
+  
+/* 任务文本的样式 */  
+.task-text {  
+  display: flex;  
+  justify-content: space-between; /* 水平分布子元素，左侧和右侧留出空间 */  
+  width: 100%; /* 确保 p 元素占据整个父容器的宽度 */  
+  font-size: 16px;  
+  color: #333;  
+}  
+  
+/* 按钮的样式 */  
+.finish {  
+  padding: 10px 20px;  
+  font-size: 14px;  
+  color: #fff;  
+  background-color: #007bff;  
+  border: none;  
+  margin-left: auto;
+  border-radius: 5px;  
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}  
+  
+.finish:hover {  
+  background-color: #0056b3;  
+}
+.user-click{
+  position:fixed;
+  top:0px;
+  right:8px;
+  width: 35px;
+  height:35px;
+  z-index: 6;
+}
+
+.tabs {  
+  display: flex;  
+  cursor: pointer;  
+  padding: 0;  
+  margin: 0;  
+  list-style: none;  
+  overflow-x:auto;
+}  
+.progress-circle {
+  
+  --size: 200px;  /* 尺寸大小 */
+  --border-width: 15px;  /* 环宽（粗细） */
+  --gap-degree: 0;  /* 缺口夹角 */
+  --color: #7856d7;  /* 主色 */
+  --inactive-color: #ccc;  /* 辅助色 */
+  
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+}
+
+/* 百分数文本 */
+.progress-circle::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  counter-reset: progress var(--percent);
+  content: counter(progress) '';
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+/* SVG 容器 */
+.progress-circle > svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(
+    calc((var(--gap-degree) + (180 - var(--gap-degree)) / 2) * 1deg)
+  );
+}
+
+/* 进度条圆环 */
+.progress-circle circle {
+  --r: calc((var(--size) - var(--border-width)) / 2);
+  --active-degree: calc(360 - var(--gap-degree));
+    
+  cx: calc(var(--size) / 2);
+  cy: calc(var(--size) / 2);
+  r: var(--r);
+  fill: none;
+  stroke-width: var(--border-width);
+  stroke-linecap: round;  
+}
+
+.progress-value {
+  opacity: var(--percent);
+  transition: stroke-dasharray .4s linear, stroke .3s;
+}
+
+
+
+.tabs li {  
+  padding: 10px 20px;  
+  background-color: #f0f0f0;  
+  border: 1px solid #ccc;  
+  border-radius: 8px;
+  transition: background-color .4s ease;
+  transition: color .4s ease;
+  text-align: center;      
+  flex-shrink: 0;
+}  
+.tabs li:hover {  
+  background-color: blue;  
+  color:white;
+}  
+.tabs li.active {  
+  background-color: rgba(153, 153, 153, 0.527);  
+  color:white;
+}  
+.content {  
+  text-align: left;
+  display: none;  
+  overflow: hidden;
+}  
+.content.active {  
+  display: block;  
+}  
+.useravatar{
+  position:fixed;
+  top:2px;
+  right:5px;
+  width: 30px;
+  height:30px;
+  border-radius: 200px;
+  user-select: none;
+  border: 1px solid #fff;
+      background-color: rgba(255, 255, 255, 0.3);
+      /* 增加磨砂质感 */
+      backdrop-filter: blur(10px);
+      z-index: 5;
+}
+.black-layer{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width:100%;
+  height:35px;
+  background-color: white;
+  z-index: 2;
+}
+.menu-btn{
+  width:100%;
+  height:40px;
+  margin:auto 0;
+  text-align:center;
+  justify-content: space-around;
+    align-items: center;
+  border: 1px solid #e7e7e777;
+  backdrop-filter: blur(5px);
+  background-color: white;
+  transition:all 0.5s ease;
+  border-radius: 8px;  
+}
+.menu-btn:hover{
+  background-color: blue;
+  color:white;
+}
+.menuclose{
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+  background-size: cover;
+  z-index: 9;
+  opacity: 0;
+  transition:opacity 0.5s ease;
+}
+.btn{
+  position: fixed;
+  top:0;
+  left:0;
+  width:40px;
+  height:35px;
+  z-index:10;
+}
+.menucloseclick{
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index: 10;
+  transition:all 0.5s ease;
+}
+.menu-box{
+  position: fixed;
+  top: 0;
+  left: -70%;
+  width:70%;
+  height:100%;
+  background-color: rgba(255,255,255,1);
+  z-index: 11;
+  transition:left 0.5s ease;
+}
+.menu-box.active{
+  left: 0%;
+}
+.menuclose.active{
+  opacity: 1;
+}
+.menucloseclick.active{
+  top: 0;
+}
+.a{
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    background: none;
+    text-decoration: none;
+}
+
+.img{
+  position: fixed;
+  margin-top: 40px;
+  left:20px;
+  width: 80px;
+  border-radius: 200px;
+  user-select: none;
+  border: 1px solid #fff;
+      background-color: rgba(255, 255, 255, 0.3);
+      /* 增加磨砂质感 */
+      backdrop-filter: blur(10px);
+  box-shadow:0px 1px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.username
+{
+  position: fixed;
+  top:55px;
+  left:120px;
+  text-align: center;
+    color: black;
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+.editor
+{
+  position: fixed;
+  top:65px;
+  left:260px;
+  width:80px;
+  height:40px;
+  text-align: center;
+    background-color: white;
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #e7e7e7c8;
+      /* 增加磨砂质感 */
+      backdrop-filter: blur(10px);
+      transition:all 0.4s ease;
+}
+.editor:hover{
+  background-color: #f2f1f16b;
+}
+.uid
+{
+  position: fixed;
+  top:90px;
+  left:120px;
+  text-align: center;
+    color: rgba(83,83,83,0.839);
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+.beiji {
+  position: fixed;
+  top: 3px;
+  left:8px;
+  z-index: 5;
+}
+
+.navbar-toggle-btn span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  bottom:0;
+  background-color: black;
+  margin: 5px 0;
+}
+
+
+body{
+  display:flex;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .userbar{
+    position: absolute;
+    top:40px;
+  }
+  .navbar {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+  }
+
+  .navbar a {
+    padding: 8px;
+  }
+
+  .navbar.show {  
+    display: flex;
+  }
+
+  .navbar-toggle-btn {
+    display: block;
+  }
+  br{
+    display: none;
+  }
+    .title {
+      margin-top: 5%;
+      text-align: center;
+      color: white;
+      /* 禁止选中 */
+      user-select: none;
+      letter-spacing: 5px;
+      text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+    }
+      .login{
+        margin-top:2%;
+        margin-right:40%;
+        background-color: #0015FF;
+    background: linear-gradient(135deg, #5279FF, #25C4EA);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    color: white;
+    width: 40%;
+    height: 40px;
+    border: none;
+    text-align: center;
+    outline: none;
+    line-height: 8px;
+    font-size: 15px;
+      }
+      .register{
+        font-size: 12px;
+        margin-top:-8%;
+        margin-left:40%;
+      }
+      a{
+        text-decoration: none;
+      }
+}
+
+@media screen and (min-width: 769px) {
+  .userbar{
+    position: absolute;
+    top:0;
+  }
+  .navbar-toggle-btn{
+    display: none;
+  }
+  .baise {
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    height: 80%;
+    width: calc(100% - 200px);
+    background: linear-gradient(135deg,rgba(247, 209, 215,0.8), rgba(191, 227, 241,0.8));
+    
+    background-size: cover;
+    z-index: 0;
+    backdrop-filter: blur(5px);
+    border-radius: 10px 10px 10px 10px;
+    
+  }
+  #main{
+    margin-left:160px;
+  }
+  .post{
+    margin-left:160px;
+  }
+  .menu-box{
+    position: fixed;
+    top: 0;
+    left:0%;
+    width:160px;
+    display:inline-block;
+    background-color: rgba(105, 105, 105, 0.18);
+  }
+  .bj{
+    margin-left:160px;
+    width:calc(100% - 160px);
+  }
+  .overlay{
+    width:calc(100% - 160px);
+    margin-left:160px;
+  }
+  .title {
+    text-align: center;
+    color: white;
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+  }
+  .black-layer{
+    display:none;
+  }
+  .useravatar{
+    display: none;
+  }
+  .username
+{
+  position: fixed;
+  top:55px;
+  left:calc(120px + 200px);
+  text-align: center;
+    color: black;
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+.editor
+{
+  position: fixed;
+  top:65px;
+  left:calc(100% - 120px);
+  width:80px;
+  height:40px;
+  text-align: center;
+    background-color: white;
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #e7e7e7c8;
+      /* 增加磨砂质感 */
+      backdrop-filter: blur(10px);
+      transition:all 0.4s ease;
+}
+.editor:hover{
+  background-color: #f2f1f16b;
+}
+.uid
+{
+  position: fixed;
+  top:90px;
+  left:calc(120px + 200px);
+  text-align: center;
+    color: rgba(83,83,83,0.839);
+    /* 禁止选中 */
+    user-select: none;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+.img{
+  position: fixed;
+  margin-top: 40px;
+  left:calc(20px + 200px);
+  width: 80px;
+  border-radius: 200px;
+  user-select: none;
+  border: 1px solid #fff;
+      background-color: rgba(255, 255, 255, 0.3);
+      /* 增加磨砂质感 */
+      backdrop-filter: blur(10px);
+  box-shadow:0px 1px 4px 4px rgba(0, 0, 0, 0.2);
+}
+}
+.dao {
+  width: 100%;
+  height: 50px;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  padding: 18px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+    z-index: 99;
+}
+.bj {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #e7e7e7 url('../icon/bj.jpg') center no-repeat;
+  background-size: cover;
+  z-index: -2;
+  backdrop-filter: blur(5px);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+@keyframes float {    
+  from {      
+     margin-top:50%;        
+     opacity: 0;    
+     }    
+  to {    
+    margin-top: 15%;        
+    opacity: 1;    
+    }
+  }
+  @keyframes appear {    
+  from {      
+     
+     opacity: 0;    
+     }    
+  to {    
+    
+    opacity: 1;    
+    }
+  }

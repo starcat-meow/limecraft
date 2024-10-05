@@ -3,6 +3,7 @@
 include_once './header.php';
 $pdo=PDOStart();
 UserCookieTest();
+time_ip_update();
 if (!empty($_COOKIE['usercookie'])) {  
         $cookie = $_COOKIE['usercookie'];  
        $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");  

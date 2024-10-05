@@ -14,12 +14,17 @@ if (!empty($_COOKIE['usercookie'])) {
     }
     else
     {
-       $stmt = $pdo->prepare("SELECT img,name,gid FROM user WHERE cookie = ?");  
+       $stmt = $pdo->prepare("SELECT img,name,gid,id FROM user WHERE cookie = ?");  
        $stmt->bindParam(1, $cookie, PDO::PARAM_STR);  
     }
        $stmt->execute();  
        $arr = $stmt->fetchAll();  
         $shu = $arr[0]; 
+        if($shu['id']!=1)
+        {
+         print_r("404 NO FOUND");
+         exit;
+        }
         if($shu['img']!='')
            $GLOBALS["img"]=$shu['img'];
         else
@@ -46,6 +51,16 @@ if (!empty($_COOKIE['usercookie'])) {
       header('Location: ../login');  
       exit;  
     }
+    for($i=0;$i<8;$i++)
+    {
+    $a[$i]['id']=0;
+    $a[$i]['content']="none";
+    $a[$i]['reward']=0;
+    $a[$i]['cycle']='day';
+    $a[$i]['datetime']=date("Y-m-d H:i:s");
+    $a[$i]['state']=false;
+    }
+    //print_r(json_encode($a));
 ?>
 
 <html>
@@ -73,25 +88,33 @@ if (!empty($_COOKIE['usercookie'])) {
 
 <body>
 <div class="menu-box" id="MenuBox">
+  <p>快捷导航</p>
     <a href="../">
     <button class="menu-btn">首页</button>
     </a>
     <?php
-    if(empty($_COOKIE['usercookie']))
     echo "<a href='../login'>
       <button class='menu-btn'>登录</button>
     </a>"
     ?>
     <?php
-    if(!empty($_COOKIE['usercookie']))
+    echo "<a href='../register'>
+      <button class='menu-btn'>注册</button>
+    </a>"
+    ?>
+    <?php
     echo "<a href='../post'>
       <button class='menu-btn'>发布</button>
     </a>"
     ?>
     <?php
-    if(!empty($_COOKIE['usercookie']))
     echo "<a href='../user'>
       <button class='menu-btn'>用户中心</button>
+    </a>"
+    ?>
+    <?php
+    echo "<a href='./'>
+      <button class='menu-btn'>后台管理</button>
     </a>"
     ?>
   </div>
@@ -109,25 +132,15 @@ if (!empty($_COOKIE['usercookie'])) {
        </div>
       </div>
     </div>
-  <button class="editor">编辑</button>
-  <div class="img-box">
-    <a href="./avatar">
-    <img src="<?php echo $GLOBALS["img"]; ?>" class="img" draggable="flase">
-    </img>
-    </a>
-    <p class="username"><?php echo $GLOBALS["name"]; ?></p>
-        <p class="uid">
-          <?php $text="GID:".$GLOBALS["gid"].""; echo $text; ?>
-          </p>
-  </div>
+
   <div class="userbar">
   <ul class="tabs">  
     <li class="tab" onclick="showContent(0)">个人信息</li>  
-    <li class="tab" onclick="showContent(1);ds();">信用度</li> 
-    <li class="tab" onclick="showContent(2);">任务</li> 
-    <li class="tab" onclick="showContent(3)">我发布的</li>
-    <li class="tab" onclick="showContent(4)">我的消息</li> 
-    <li class="tab" onclick="showContent(5)">我的订阅</li> 
+    <li class="tab" onclick="showContent(1);ds();">编辑用户</li> 
+    <li class="tab" onclick="showContent(2);">编辑任务</li> 
+    <li class="tab" onclick="showContent(3)">发送通知</li>
+    <li class="tab" onclick="showContent(4)">管理通知</li> 
+    <li class="tab" onclick="showContent(5)">编辑信用</li> 
 </ul>  
   
 <div id="content1" class="content active">  
@@ -136,7 +149,7 @@ if (!empty($_COOKIE['usercookie'])) {
       if($user!=false)
       {
         echo "<p>用户名:{$user['name']}</p>";
-        echo "<p>ID:{$user['id']}</p>";
+        echo "<p>UID:{$user['id']}</p>";
         echo "<p>GID:{$user['gid']}</p>";
         echo "<p>注册日期:{$user['register_date']}</p>";
         echo "<p>最近访问:{$user['last_date']}</p>";
@@ -165,17 +178,21 @@ if (!empty($_COOKIE['usercookie'])) {
 </div>  
 <div id="content3" class="content">  
   <ol>
-  <li class="task-box">
-    <p class="task-text">1.每日签到 +1
-      <button class="finish" style="<?php echo "background-color:green;"?>">完成任务</button>
+    <?php 
+    for($i=1;$i<=8;$i++)
+    {
+    echo "<li class='task-box'>
+    <p class='task-text'>{$i}.<input type='text' value='none' placeholder='内容'>
+    <input type='text' placeholder='周期'>
+    <input type='text' placeholder='奖励'>
+    <input type='text' placeholder='任务事件id'>
+      <button class='finish'>发布任务</button>
     </p>
     </li>
-  <li class="task-box">
-  <p class="task-text">2.完善个人信息 +20
-  <button class="finish">完成任务</button>
-  </p>
-  </li>
-  </ol>
+  </ol>";
+    }
+    ?>
+  
 </div>  
 <div id="content4" class="content">  
  

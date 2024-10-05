@@ -45,11 +45,11 @@ function GetIp()
 return $ip;
 }
 //获取当前ip地址
-function LastTimeUpdate()
+function GetDateTime()
 {
-  
+  return date('Y-m-d H:i:s', time());
 }
-//更改最近访问时间（基本上每个php文件都要更新
+//获取当前datetime时间
 function UserCookieTest()
 {
   if(!empty($_COOKIE['usercookie']))
@@ -129,4 +129,18 @@ function GetUserData(){
   }
 }
 //说明：getuserdata获取usercookie符合的用户数据
+function time_ip_update(){
+  if(!empty($_COOKIE['usercookie']))
+  {
+  $pdo=PDOStart();
+  $stmtt=$pdo->prepare("UPDATE `user` SET `last_date`= ?,`last_ip`= ? where cookie = ?;");
+  $datetime=GetDateTime();
+  $stmtt->bindParam(1, $datetime, PDO::PARAM_STR);
+  $ip=GetIp();
+  $stmtt->bindParam(2, $ip, PDO::PARAM_STR);
+  $stmtt->bindParam(3, $_COOKIE['usercookie'], PDO::PARAM_STR); 
+  $stmtt->execute();
+  }
+}
+//最近登录ip和时间更新
 ?>

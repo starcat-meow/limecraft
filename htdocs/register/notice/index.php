@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 if (!session_id()) session_start();
-
+UserCookieTest();
+time_ip_update();
 ?>
 
 <html>
