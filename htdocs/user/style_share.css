@@ -49,8 +49,13 @@
   padding: 20px;  
   overflow:hidden;
   box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.2);
+  position:relative;
+  width:100%;
 }  
-
+#content4{
+  position:relative;
+  width:100%;
+}
 /* 头像样式 */  
 .post-avatar {  
   width: 50px;  
@@ -67,7 +72,7 @@
 
 /* 帖子元数据样式 */  
 .post-meta {  
-  float: left;  
+  float: left; 
   width: calc(100% - 60px);  
 }  
 
@@ -84,6 +89,7 @@
 .post-content {  
   clear: both;  
   margin-top: 10px;  
+  
 }  
 
 .post-title {  
@@ -160,11 +166,7 @@ ol {
   height:35px;
   z-index: 6;
 }
-.userbar{
-  position: absolute;
-  top:160px;
-  overflow-y:hidden;
-}
+
 .tabs {  
   display: flex;  
   cursor: pointer;  
@@ -173,6 +175,23 @@ ol {
   list-style: none;  
   overflow-x:auto;
   overflow-y:hidden;
+}  
+.tab {  
+  position: relative;  
+  display: inline-block; /* 确保li元素是块级元素，以便绝对定位生效 */  
+  margin-top:5px;
+}
+.unread-messages {  
+  position: absolute;  
+  top: -5px; /* 根据需要调整 */  
+  right: -5px; /* 根据需要调整 */  
+  background-color: red; /* 未读消息的颜色 */  
+  color: white; /* 文字颜色 */  
+  border-radius: 50%; /* 圆形 */  
+  padding: 3px 6px; /* 根据需要调整大小 */  
+  font-size: 12px; /* 根据需要调整字体大小 */  
+  white-space: nowrap; /* 防止文字换行 */  
+  z-index:5;
 }  
 .progress-circle {
   
@@ -438,6 +457,12 @@ body{
 }
 
 @media screen and (max-width: 768px) {
+  .userbar{
+    position: absolute;
+    top:150px;
+    overflow-y:hidden;
+    width:100%;
+  }
   .navbar {
     display: none;
     flex-direction: column;
@@ -515,6 +540,12 @@ body{
 }
 
 @media screen and (min-width: 769px) {
+  .userbar{
+    position: absolute;
+    top:150px;
+    overflow-y:hidden;
+    width:calc(100%-160px);
+  }
   .navbar-toggle-btn{
     display: none;
   }

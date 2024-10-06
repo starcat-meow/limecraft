@@ -12,11 +12,11 @@ if (!empty($_COOKIE['usercookie'])) {
   $stmt->execute();
   $arr = $stmt->fetchAll();
   $shu = $arr[0];
-  if($shu['gid']!=1)
+  /*if($shu['gid']!=1)
   {
   print_r("该页面非管理员禁止访问");
   exit;
-  }
+  }*/
   if ($shu['img'] != '') {
     $GLOBALS["img"] = $shu['img'];
   } else
@@ -55,7 +55,7 @@ if (!empty($_POST)) {
   $stmt->execute();
   $arr = $stmt->fetchAll();
   $shu=$arr[0];
-  $GLOBALS['gid'] = $shu['gid'];
+  $GLOBALS['id'] = GetId();
   $GLOBALS['name'] = $shu['name'];
   $GLOBALS['img'] = $shu['img'];
   $GLOBALS['date_time'] = date("Y-m-d H:i:s");
@@ -68,7 +68,7 @@ if (!empty($_POST)) {
     $stmt->bindParam(3, $_POST['text'], PDO::PARAM_STR); // 假设是整数用int，如果不是，请使用PDO::PARAM_STR
     $stmt->bindParam(4, $GLOBALS['date_time'], PDO::PARAM_STR);
     $stmt->bindParam(5, $GLOBALS['date_time'], PDO::PARAM_STR);
-    $stmt->bindParam(6, $GLOBALS['gid'], PDO::PARAM_INT);
+    $stmt->bindParam(6, $GLOBALS['id'], PDO::PARAM_INT);
     $permissions=0;
     $stmt->bindParam(7, $permissions, PDO::PARAM_INT);
     $empty='{}';
