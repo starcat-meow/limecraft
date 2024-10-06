@@ -440,17 +440,35 @@ body{
     margin-left:160px;
     width:calc(100% - 160px);
   }
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=huge]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before{
+    content:"32px" !important;
+  }
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=small]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before{
+    content:"10px" !important;
+  }
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=large]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before{
+    content:"18px" !important;
+  }
+  .ql-snow .ql-picker.ql-size .ql-picker-label::before, .ql-snow .ql-picker.ql-size .ql-picker-item::before{
+    content:"大小" !important;
+  }
   .overlay{
     width:calc(100% - 160px);
     margin-left:160px;
   }
   .title {
-    text-align: center;
-    color: white;
-    /* 禁止选中 */
-    user-select: none;
-    letter-spacing: 5px;
-    text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+      width: 100%;
+      height: 40px;
+      color: black;
+      /* 禁止选中 */
+      user-select: none;
+      letter-spacing: 2px;
+      text-indent: 10px;
+      border: 1px solid rgba(120,120,120,0.5);
+      border-radius: 8px;
+      /* 增加磨砂质感 */
+      outline:none;
+      margin-bottom: 10px;
   }
   .black-layer{
     display:none;

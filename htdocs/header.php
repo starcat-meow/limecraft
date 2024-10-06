@@ -228,7 +228,7 @@ class Message
   }
   public function Add($title, $text)
   {
-    $num = count($this->message);
+    $num = count($this->message)-1;
     $this->message[$num]['title'] = $title;
     $this->message[$num]['text'] = $text;
     $this->message[$num]['datetime'] = GetDateTime();
@@ -272,7 +272,6 @@ class Message
   public function GetNoRead(){
     $num=$this->message['induction']['num'];
     $update=$this->message['induction']['update'];
-    
     return $num-$update;
   }
   public function UpdateRead(){

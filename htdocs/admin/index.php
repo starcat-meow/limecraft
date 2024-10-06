@@ -196,7 +196,65 @@ if (!empty($_COOKIE['usercookie'])) {
   
 </div>  
 <div id="content4" class="content">  
- 
+<form method="post" action="./notice.php">
+    <input type="text" class="title" name="title" placeholder="标题">
+    <input type="text" placeholder="发送用户" name="user" class="title">
+    <input type="hidden" name="text" id="text">
+    <!-- 引入主题css文件 -->
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
+    <!-- 引入js文件 -->
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js">
+      
+    </script>
+
+    <!-- 自定义编辑器工具栏 -->
+    <div class="editor-box">
+    <div id="toolbar">
+    </div>
+
+    <!-- 创建编辑容器 -->
+    <div id="editor">
+      <p>
+        
+      </p>
+    </div>
+</div>
+    <!-- 初始化编辑器，snow主题 -->
+    <script>
+
+      const editor = new Quill('#editor', {
+        modules: {
+          toolbar:  [
+      // 默认的
+      [{'size':['small','large','huge']}],
+      ['bold','italic', 'underline','strike',{'color':[]}],
+      [{ list: 'ordered'}, { list: 'bullet' }],
+      [{ 'align':[] }],
+      ['image','link','code-block'],
+    ],
+    
+    syntax:{
+      highlight:text=>{
+        return hljs.highlightAuto(text).value;
+      }
+    }
+        },
+        theme: 'snow'
+      }
+      );
+    </script>
+
+    <input type="submit" value="发送" class="login"></input>
+  </form>
+  <script>  
+  
+    // 在表单提交前，将Quill的内容设置到隐藏的input中  
+    document.querySelector('form').onsubmit = function() {  
+        var quill = document.getElementById('text');  
+        quill.value = editor.root.innerHTML; 
+    };  
+</script>
 </div>  
   </div>
 </body>
