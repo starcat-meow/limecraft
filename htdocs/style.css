@@ -20,6 +20,7 @@ body{
       /* 增加磨砂质感 */
   backdrop-filter: blur(10px);
   transition: all 0.6s ease;
+  cursor: pointer;
 }
 .ChangePage:hover{
   background-color: rgba(0, 255, 255, 0.8);
@@ -35,6 +36,7 @@ body{
   backdrop-filter: blur(10px);
   outline: none;
   transition: all 1s ease;
+  cursor: pointer;
 }
 .pagechange:focus{
   background-color:rgba(255, 255, 255, 0.2) ;
@@ -73,7 +75,8 @@ body{
   backdrop-filter: blur(5px);
   background-color: white;
   transition:all 0.5s ease;
-  border-radius: 8px;  
+  border-radius: 8px; 
+  cursor: pointer; 
 }
 .menu-btn:hover{
   background-color: blue;
