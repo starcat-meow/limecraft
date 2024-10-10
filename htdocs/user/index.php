@@ -127,13 +127,10 @@ if (!empty($_COOKIE['usercookie'])) {
         $message->GetById(GetId());
         if($message->GetNoRead()>0)
           echo "<span class='unread-messages' id='unreadMessages'>{$message->GetNoRead()}</span>";
-        $message->UpdateRead();
-        $message->ReturnSqlById(GetId());
         ?>
       </li>       
         <li class="tab" onclick="showContent(5)">我的订阅</li>
       </ul>
-
       <div id="content1" class="content">
         <p>
           <?php

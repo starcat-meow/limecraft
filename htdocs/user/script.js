@@ -44,6 +44,14 @@ function closeTransitionEndHandler(event) {
 }
 }
 function showContent(index) {  
+  if(index==4)
+  {
+// 使用 AJAX 发送请求
+var xhr = new XMLHttpRequest();  
+xhr.open("GET", "MessageUpdate.php?t=" + Math.random(), true);  
+xhr.send();
+
+  }
   // 获取所有的 tab 和 content 元素  
   const tabs = document.querySelectorAll('.tab');  
   const contents = document.querySelectorAll('.content');  
@@ -56,6 +64,7 @@ function showContent(index) {
   // 添加 active 类到点击的 tab 和相应的 content  
   tabs[index].classList.add('active');  
   contents[index].classList.add('active');  
+  
 }  
 
 function fh() {  
