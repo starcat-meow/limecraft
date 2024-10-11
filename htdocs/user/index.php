@@ -122,12 +122,22 @@ if (!empty($_COOKIE['usercookie'])) {
         <li class="tab" onclick="showContent(2);">任务</li>
         <li class="tab" onclick="showContent(3)">我发布的</li>
         <li class="tab" onclick="showContent(4)">我的消息
+        <span class='unread-messages' id='unreadMessages'>
         <?php
         $message = new Message();
         $message->GetById(GetId());
         if($message->GetNoRead()>0)
-          echo "<span class='unread-messages' id='unreadMessages'>{$message->GetNoRead()}</span>";
+          echo $message->GetNoRead();
+        else
+          echo "<style>
+          #unreadMessages
+          {
+            display:none;
+            
+          }
+          </style>";
         ?>
+        </span>
       </li>       
         <li class="tab" onclick="showContent(5)">我的订阅</li>
       </ul>

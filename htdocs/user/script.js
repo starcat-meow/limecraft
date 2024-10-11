@@ -50,7 +50,8 @@ function showContent(index) {
 var xhr = new XMLHttpRequest();  
 xhr.open("GET", "MessageUpdate.php?t=" + Math.random(), true);  
 xhr.send();
-
+var text=document.getElementById('unreadMessages');
+text.style.display="none";
   }
   // 获取所有的 tab 和 content 元素  
   const tabs = document.querySelectorAll('.tab');  
